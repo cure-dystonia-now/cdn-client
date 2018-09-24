@@ -1,13 +1,10 @@
 "use strict";
 
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import "./less/index.less";
+import "./style/index.less";
 
-import { Hello } from "./components/Hello";
+import {Application} from "./components/Application";
 
-ReactDOM.render(
-  <Hello/>,
-  document.getElementById("application")
-);
+ReactDOM.render(<Application/>, document.getElementById("application"));
