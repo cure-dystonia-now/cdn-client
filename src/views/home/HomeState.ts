@@ -1,7 +1,20 @@
-export type HomeState = {
-  loading: boolean
-}
+"use strict";
 
-export const InitialHomeState: HomeState = {
-  loading: false
-};
+import {action, observable} from "mobx";
+
+export class HomeState {
+
+  @observable
+  isLoading: boolean;
+
+  constructor() {
+    this.isLoading = false;
+  }
+
+  @action
+  flipLoading() {
+    this.isLoading = !this.isLoading;
+    console.log(this.isLoading);
+  }
+
+}
