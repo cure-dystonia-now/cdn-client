@@ -8,6 +8,9 @@ module.exports = {
     filename: "bundle.js",
     path: __dirname + "/dist"
   },
+  devServer: {
+    historyApiFallback: true
+  },
   devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
@@ -24,6 +27,13 @@ module.exports = {
           "css-loader",
           "less-loader"
         ],
+      },
+      {
+          test: /\.css$/,
+          use: [
+              "style-loader",
+              "css-loader",
+          ],
       },
     ]
   },

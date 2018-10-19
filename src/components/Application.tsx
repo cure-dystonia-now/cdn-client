@@ -8,6 +8,7 @@ import { HomePage } from "../views/home/HomePage";
 import { ResearchPage } from "../views/research/ResearchPage";
 import {RootState} from "../state/RootState";
 import {Provider} from "mobx-react";
+import {NavigationBar} from "./navigation/NavigationBar";
 
 export class Application extends React.Component {
 
@@ -23,8 +24,9 @@ export class Application extends React.Component {
       <BrowserRouter>
         <Provider rootState={this.rootState}>
           <div>
-          <Route path="/" component={HomePage}/>
-          <Route path="/research" component={ResearchPage}/>
+            <NavigationBar rootState={this.rootState}/>
+            <Route exact path="/" component={HomePage}/>
+            <Route path="/research" component={ResearchPage}/>
           </div>
         </Provider>
       </BrowserRouter>
