@@ -16,7 +16,6 @@ export class ResearchPage extends React.Component<PageProps> {
   render() {
     return (
       <div>
-        {/*<NavigationBar rootState={this.props.rootState}/>*/}
         <p>This is the research page</p>
       </div>
     );
