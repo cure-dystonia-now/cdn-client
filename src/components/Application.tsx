@@ -28,7 +28,7 @@ export class Application extends React.Component {
             <NavigationBar rootState={this.rootState}/>
             <Route exact path="/" component={HomePage}/>
             <Route path="/research" component={ResearchPage}/>
-            <Route path="/about" compenent={AboutPage}/>
+            <Route path="/about" component={AboutPage}/>
           </div>
         </Provider>
       </BrowserRouter>
