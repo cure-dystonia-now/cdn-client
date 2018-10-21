@@ -33,6 +33,9 @@ export class NavigationBar extends React.Component<PageProps> {
             <div className={this.getLinkClass("research")}>
               <Link className="text" to="/research">Research</Link>
             </div>
+            <div className={this.getLinkClass("about")}>
+              <Link className="text" to="/about">About</Link>
+            </div>
           </div>
         </div>
         <div className="col-sm-1 col-md-3">
