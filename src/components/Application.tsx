@@ -10,6 +10,9 @@ import {RootState} from "../state/RootState";
 import {Provider} from "mobx-react";
 import {NavigationBar} from "./navigation/NavigationBar";
 import {AboutPage} from "../views/about/AboutPage";
+import {EventsPage} from "../views/events/EventsPage";
+import {DonatePage} from "../views/donate/DonatePage";
+import {ContactPage} from "../views/contact/ContactPage";
 
 export class Application extends React.Component {
 
@@ -29,6 +32,9 @@ export class Application extends React.Component {
             <Route exact path="/" component={HomePage}/>
             <Route path="/research" component={ResearchPage}/>
             <Route path="/about" component={AboutPage}/>
+            <Route path="/events" component={EventsPage}/>
+            <Route path="/donate" component={DonatePage}/>
+            <Route path="/contact" component={ContactPage}/>
           </div>
         </Provider>
       </BrowserRouter>
