@@ -22,12 +22,23 @@ export class HomePage extends React.Component<PageProps> {
   }
 
   render() {
-    const loadingText = this.props.rootState.homeState.isLoading ? "yes" : "no";
     return (
-      <div>
-        {/*<NavigationBar rootState={this.props.rootState}/>*/}
-        <p>Loading? <b>{loadingText}</b></p>
-        <button onClick={this.flipButton}>flip</button>
+      <div className="container">
+        <div className="columns card-wrapper">
+          <div className="column col-sm-12 col-7">
+            <div className="card">
+              <h1>Hello</h1>
+            </div>
+          </div>
+          <div className="column col-sm-12 col-5">
+            <div className="card">
+              <h1>Goodbye</h1>
+            </div>
+            <div className="card">
+              <h1>Goodbye</h1>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
