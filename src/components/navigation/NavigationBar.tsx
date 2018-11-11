@@ -24,8 +24,8 @@ export class NavigationBar extends React.Component<PageProps> {
 
   render() {
     return (
-      <div id="navigation" className="row">
-        <div className="col-sm-12 col-md-9">
+      <div id="navigation" className="columns col-oneline">
+        <div className="column col-sm-9 col-md-11">
           <div className="link-wrapper">
             <div className={this.getLinkClass("home")}>
               <Link className="text" to="/">Home</Link>
@@ -38,7 +38,7 @@ export class NavigationBar extends React.Component<PageProps> {
             </div>
           </div>
         </div>
-        <div className="col-sm-1 col-md-3">
+        <div className="column col-sm-3 col-md-1">
           <p>Right side of NavBar</p>
         </div>
       </div>
