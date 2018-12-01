@@ -1,7 +1,5 @@
-"use strict";
-
-import {action, observable} from "mobx";
 import bind from "bind-decorator";
+import {action, observable} from "mobx";
 
 export class NavigationBarState {
 

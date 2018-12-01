@@ -14,6 +14,7 @@ import { ResearchPage } from "../pages/research/ResearchPage";
 
 import { NavigationBar } from "./navigation/NavigationBar";
 import { Footer } from "./footer/Footer";
+import { LoginPage } from "../pages/login/LoginPage";
 
 export class Application extends React.Component {
 
@@ -41,6 +42,7 @@ export class Application extends React.Component {
               <Route exact path="/" component={HomePage}/>
               <Route path="/research" component={ResearchPage}/>
               <Route path="/about" component={AboutPage}/>
+              <Route path="/login" component={LoginPage}/>
             </div>
             <Footer/>
           </div>

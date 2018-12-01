@@ -3,7 +3,6 @@ import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
 
 import { PageProps } from "../../definitions/PageProps";
-import { ImageCarousel } from "../../components/carousels/ImageCarousel";
 import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
 
 @inject("pageDependencies")
@@ -28,7 +27,6 @@ export class HomePage extends React.Component<PageProps> {
           <div className="column col-sm-12 col-7">
             <div className="card">
               <h1>Hello</h1>
-              <ImageCarousel/>
             </div>
           </div>
           <div className="column col-sm-12 col-5">

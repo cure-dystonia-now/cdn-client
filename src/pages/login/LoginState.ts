@@ -9,6 +9,9 @@ export class LoginState {
   @observable
   public password?: string;
 
+  @observable
+  public error?: string;
+
   @bind
   @action
   public updateEmail(email?: string): void {
@@ -19,6 +22,18 @@ export class LoginState {
   @action
   public updatePassword(password?: string): void {
     this.password = password;
+  }
+
+  @bind
+  @action
+  public updateError(error: string): void {
+    this.error = error;
+  }
+
+  @bind
+  @action
+  public clearError(): void {
+    this.error = undefined;
   }
 
 }

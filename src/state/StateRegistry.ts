@@ -1,8 +1,6 @@
-"use strict";
-
 import { HomeState } from "../pages/home/HomeState";
-import { NavigationBarState } from "../components/navigation/NavigationBarState";
 import { LoginState } from "../pages/login/LoginState";
+import { NavigationBarState } from "../components/navigation/NavigationBarState";
 
 export class StateRegistry {
 
