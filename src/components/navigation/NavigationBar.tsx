@@ -1,11 +1,9 @@
-"use strict";
-
 import React from "react";
+import bind from "bind-decorator";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 import { PageProps } from "../../definitions/PageProps";
-import bind from "bind-decorator";
 
 /**
  * NavigationBar Component
@@ -16,8 +14,8 @@ export class NavigationBar extends React.Component<PageProps> {
 
   @bind
   getLinkClass(pageName: string): string {
-    const { rootState } = this.props;
-    const { navigationBarState } = rootState;
+    const { stateRegistry } = this.props.pageDependencies;
+    const { navigationBarState } = stateRegistry;
     const baseClass = "link";
     return navigationBarState.currentPage === pageName ? `${baseClass} active` : baseClass;
   }

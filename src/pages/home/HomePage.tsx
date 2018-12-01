@@ -1,24 +1,24 @@
-"use strict";
-
 import React from "react";
-import {inject, observer} from "mobx-react";
-import {PageProps} from "../../definitions/PageProps";
 import bind from "bind-decorator";
-// import {NavigationBar} from "../../components/navigation/NavigationBar";
+import { inject, observer } from "mobx-react";
 
-@inject("rootState")
+import { PageProps } from "../../definitions/PageProps";
+import { ImageCarousel } from "../../components/carousels/ImageCarousel";
+import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
+
+@inject("pageDependencies")
 @observer
 export class HomePage extends React.Component<PageProps> {
 
   @bind
   flipButton() {
-    const { rootState } = this.props;
-    const { homeState }  = rootState;
+    const { stateRegistry } = this.props.pageDependencies;
+    const { homeState }  = stateRegistry;
     homeState.flipLoading();
   }
 
   componentDidMount() {
-    this.props.rootState.navigationBarState.updateCurrentPage("home");
+    NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "Cure Dystonia Now");
   }
 
   render() {
@@ -28,6 +28,7 @@ export class HomePage extends React.Component<PageProps> {
           <div className="column col-sm-12 col-7">
             <div className="card">
               <h1>Hello</h1>
+              <ImageCarousel/>
             </div>
           </div>
           <div className="column col-sm-12 col-5">

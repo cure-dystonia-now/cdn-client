@@ -1,16 +1,15 @@
-"use strict";
-
 import React from "react";
-import { PageProps } from "../../definitions/PageProps";
-// import {NavigationBar} from "../../components/navigation/NavigationBar";
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 
-@inject("rootState")
+import { PageProps } from "../../definitions/PageProps";
+import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
+
+@inject("pageDependencies")
 @observer
 export class ResearchPage extends React.Component<PageProps> {
 
   componentDidMount() {
-    this.props.rootState.navigationBarState.updateCurrentPage("research");
+    NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "Research");
   }
 
   render() {

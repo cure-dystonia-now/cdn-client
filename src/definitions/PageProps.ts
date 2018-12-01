@@ -1,5 +1,5 @@
-import { RootState } from "../state/RootState";
+import { PageDependencies } from "./dependencies/PageDependencies";
 
 export interface PageProps {
-  rootState: RootState
+  pageDependencies: PageDependencies
 }
