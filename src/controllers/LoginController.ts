@@ -11,7 +11,7 @@ export class LoginController extends BaseController {
 
     try {
       const requestPayload = { email: loginState.email, password: loginState.password };
-      const response = await axios.post(this.getBackendUrl() + "/authentication/login", requestPayload);
+      const response = await axios.post(this.getBackendUrl() + "/authentication/login", requestPayload, { withCredentials: true });
 
       const responsePayload = response.data;
       if (!responsePayload.success) {
