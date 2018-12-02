@@ -27,8 +27,8 @@ export class Application extends React.Component {
 
   private getPageDependencies(): PageDependencies {
     const stateRegistry = new StateRegistry();
-    const controllerRegistry = new ControllerRegistry(stateRegistry);
     const appConfig = ConfigurationManager.getEnvironmentConfiguration();
+    const controllerRegistry = new ControllerRegistry(stateRegistry, appConfig);
     return { stateRegistry, controllerRegistry, appConfig };
   }
 

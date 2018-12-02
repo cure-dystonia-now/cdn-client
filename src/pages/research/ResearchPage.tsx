@@ -8,8 +8,9 @@ import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper
 @observer
 export class ResearchPage extends React.Component<PageProps> {
 
-  componentDidMount() {
+  async componentDidMount() {
     NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "Research");
+    await this.props.pageDependencies.controllerRegistry.researchController.getEvent();
   }
 
   render() {

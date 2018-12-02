@@ -1,10 +1,27 @@
+import axios from "axios";
 import { BaseController } from "./BaseController";
 
 export class LoginController extends BaseController {
 
-  public async submitCredentials(email: string, password: string): Promise<void> {
-    void (email);
-    void (password);
-  }
+  public async submitCredentials(): Promise<void> {
+    const { loginState } = this.stateRegistry;
 
+    loginState.validateFields();
+    if (loginState.invalidFields.length > 0) return;
+
+    try {
+      const requestPayload = { email: loginState.email, password: loginState.password };
+      const response = await axios.post(this.getBackendUrl() + "/authentication/login", requestPayload);
+
+      const responsePayload = response.data;
+      if (!responsePayload.success) {
+        loginState.updateError(responsePayload.error || "error");
+        return;
+      }
+
+    }
+    catch (error) {
+      loginState.updateError("error");
+    }
+  }
 }

@@ -23,6 +23,7 @@
   "author": "Aaron J. Shapiro",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "mobx": "^5.5.0",
     "mobx-react": "^5.3.4",
     "react": "^16.5.2",
