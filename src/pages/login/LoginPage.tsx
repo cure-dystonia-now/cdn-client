@@ -2,7 +2,7 @@ import React from "react";
 import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
 
-import { PageProps } from "../../definitions/PageProps";
+import { PageProps } from "../../definitions/props/PageProps";
 
 @inject("pageDependencies")
 @observer

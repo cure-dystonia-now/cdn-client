@@ -18,4 +18,9 @@ export class BaseController {
     return `${protocol}://${backend.host}${port}`;
   }
 
+  protected getFullStoragePath(key: string): string {
+    const { storage } = this.appConfig;
+    return `${storage.superKey}/${key}`;
+  }
+
 }

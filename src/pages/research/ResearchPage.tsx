@@ -1,7 +1,7 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 
-import { PageProps } from "../../definitions/PageProps";
+import { PageProps } from "../../definitions/props/PageProps";
 import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
 
 @inject("pageDependencies")
@@ -10,7 +10,6 @@ export class ResearchPage extends React.Component<PageProps> {
 
   async componentDidMount() {
     NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "Research");
-    await this.props.pageDependencies.controllerRegistry.researchController.getEvent();
   }
 
   render() {

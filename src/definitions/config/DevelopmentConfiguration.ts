@@ -5,5 +5,8 @@ export const DevelopmentConfiguration: ApplicationConfiguration = {
     host: "localhost",
     port: 8080,
     secure: false
+  },
+  storage: {
+    superKey: "@CDN_DEVELOPMENT"
   }
 };

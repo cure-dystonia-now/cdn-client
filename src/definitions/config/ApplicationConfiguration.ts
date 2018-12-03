@@ -3,5 +3,8 @@ export type ApplicationConfiguration = {
     host: string,
     port?: number,
     secure: boolean
+  },
+  storage: {
+    superKey: string
   }
 }

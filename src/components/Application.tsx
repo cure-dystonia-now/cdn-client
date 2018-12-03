@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "mobx-react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { StateRegistry } from "../state/StateRegistry";
 import { ControllerRegistry } from "../registries/ControllerRegistry";
@@ -8,13 +8,10 @@ import { ConfigurationManager } from "../utilities/ConfigurationManager";
 
 import { PageDependencies } from "../definitions/dependencies/PageDependencies";
 
-import { AboutPage } from "../pages/about/AboutPage";
-import { HomePage } from "../pages/home/HomePage";
-import { ResearchPage } from "../pages/research/ResearchPage";
 
 import { NavigationBar } from "./navigation/NavigationBar";
 import { Footer } from "./footer/Footer";
-import { LoginPage } from "../pages/login/LoginPage";
+import { ApplicationRouter } from "./routers/ApplicationRouter";
 
 export class Application extends React.Component {
 
@@ -39,10 +36,7 @@ export class Application extends React.Component {
           <div className="page-wrapper">
             <NavigationBar pageDependencies={this.pageDependencies}/>
             <div className="page">
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/research" component={ResearchPage}/>
-              <Route path="/about" component={AboutPage}/>
-              <Route path="/login" component={LoginPage}/>
+              <ApplicationRouter/>
             </div>
             <Footer/>
           </div>

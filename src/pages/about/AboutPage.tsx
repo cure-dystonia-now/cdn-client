@@ -1,7 +1,7 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 
-import { PageProps } from "../../definitions/PageProps";
+import { PageProps } from "../../definitions/props/PageProps";
 import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
 
 @inject("pageDependencies")

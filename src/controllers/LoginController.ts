@@ -1,7 +1,16 @@
-import axios from "axios";
 import { BaseController } from "./BaseController";
+import { StateRegistry } from "../state/StateRegistry";
+import { ApplicationConfiguration } from "../definitions/config/ApplicationConfiguration";
+import { AuthenticationController } from "./AuthenticationController";
 
 export class LoginController extends BaseController {
+
+  private readonly authController: AuthenticationController;
+
+  constructor(stateRegistry: StateRegistry, appConfig: ApplicationConfiguration, authController: AuthenticationController) {
+    super(stateRegistry, appConfig);
+    this.authController = authController;
+  }
 
   public async submitCredentials(): Promise<void> {
     const { loginState } = this.stateRegistry;
@@ -10,9 +19,7 @@ export class LoginController extends BaseController {
     if (loginState.invalidFields.length > 0) return;
 
     try {
-      const requestPayload = { email: loginState.email, password: loginState.password };
-      const response = await axios.post(this.getBackendUrl() + "/authentication/login", requestPayload, { withCredentials: true });
-
+      const response = await this.authController.submitCredentialsToBackend(loginState.email!, loginState.password!);
       const responsePayload = response.data;
       if (!responsePayload.success) {
         loginState.updateError(responsePayload.error || "error");

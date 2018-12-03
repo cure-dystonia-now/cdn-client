@@ -3,7 +3,7 @@ import bind from "bind-decorator";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
-import { PageProps } from "../../definitions/PageProps";
+import { PageProps } from "../../definitions/props/PageProps";
 
 /**
  * NavigationBar Component
