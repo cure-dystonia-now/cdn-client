@@ -2,12 +2,12 @@ import React from "react";
 import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
 
-import { PageProps } from "../../definitions/props/PageProps";
+import { PagePropsGeneric } from "../../definitions/props/PageProps";
 import { NavigationBarHelper } from "../../utilities/helpers/NavigationBarHelper";
 
 @inject("pageDependencies")
 @observer
-export class HomePage extends React.Component<PageProps> {
+export class HomePage extends React.Component<PagePropsGeneric> {
 
   @bind
   flipButton() {
@@ -17,7 +17,7 @@ export class HomePage extends React.Component<PageProps> {
   }
 
   componentDidMount() {
-    NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "Cure Dystonia Now");
+    NavigationBarHelper.updatePageFromDependencies(this.props.pageDependencies, "home");
   }
 
   render() {

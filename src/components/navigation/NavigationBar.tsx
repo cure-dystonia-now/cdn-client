@@ -3,14 +3,14 @@ import bind from "bind-decorator";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
-import { PageProps } from "../../definitions/props/PageProps";
+import { StatefulComponent } from "../../definitions/props/PageProps";
 
 /**
  * NavigationBar Component
  * @author Aaron J. Shapiro <aaron@babaco.com>
  */
 @observer
-export class NavigationBar extends React.Component<PageProps> {
+export class NavigationBar extends React.Component<StatefulComponent> {
 
   @bind
   getLinkClass(pageName: string): string {

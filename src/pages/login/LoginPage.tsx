@@ -2,11 +2,11 @@ import React from "react";
 import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
 
-import { PageProps } from "../../definitions/props/PageProps";
+import { PagePropsGeneric } from "../../definitions/props/PageProps";
 
 @inject("pageDependencies")
 @observer
-export class LoginPage extends React.Component<PageProps> {
+export class LoginPage extends React.Component<PagePropsGeneric> {
 
   @bind
   private onEmailChange(event: React.ChangeEvent<HTMLInputElement>) {

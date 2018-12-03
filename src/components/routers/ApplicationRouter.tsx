@@ -5,10 +5,11 @@ import { ResearchPage } from "../../pages/research/ResearchPage";
 import { AboutPage } from "../../pages/about/AboutPage";
 import { LoginPage } from "../../pages/login/LoginPage";
 import { AuthenticatedRoute } from "./AuthenticatedRoute";
-import { PageProps } from "../../definitions/props/PageProps";
+import { StatefulComponent } from "../../definitions/props/PageProps";
+import { EventPage } from "../../pages/event/EventPage";
 
 
-export class ApplicationRouter extends React.Component<PageProps> {
+export class ApplicationRouter extends React.Component<StatefulComponent> {
 
   render() {
     const { authenticationState } = this.props.pageDependencies.stateRegistry;
@@ -18,6 +19,7 @@ export class ApplicationRouter extends React.Component<PageProps> {
         <Route exact path="/" component={HomePage}/>
         <Route path="/research" component={ResearchPage}/>
         <AuthenticatedRoute isAuthenticated={isAuthenticated} path="/about" component={AboutPage}/>
+        <Route path="/event/:id" component={EventPage}/>
         <Route path="/login" component={LoginPage}/>
       </div>
     )

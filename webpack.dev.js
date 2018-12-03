@@ -6,8 +6,9 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
   devtool: "source-map",
   devServer: {
-    historyApiFallback: true,
-    port: 8081
+    contentBase: "./src",
+    port: 8081,
+    historyApiFallback: true
   },
   module: {
     rules: [
