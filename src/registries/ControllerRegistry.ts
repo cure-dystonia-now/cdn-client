@@ -14,6 +14,7 @@ export class ControllerRegistry {
     this.authenticationController = new AuthenticationController(stateRegistry, appConfig);
     this.loginController = new LoginController(stateRegistry, appConfig, this.authenticationController);
     this.researchController = new ResearchController(stateRegistry, appConfig);
+    this.authenticationController.loadLocalAuthAdmin();
   }
 
 }

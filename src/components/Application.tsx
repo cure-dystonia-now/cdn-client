@@ -36,7 +36,7 @@ export class Application extends React.Component {
           <div className="page-wrapper">
             <NavigationBar pageDependencies={this.pageDependencies}/>
             <div className="page">
-              <ApplicationRouter/>
+              <ApplicationRouter pageDependencies={this.pageDependencies}/>
             </div>
             <Footer/>
           </div>

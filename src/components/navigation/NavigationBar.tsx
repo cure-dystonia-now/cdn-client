@@ -21,6 +21,9 @@ export class NavigationBar extends React.Component<PageProps> {
   }
 
   render() {
+    const { stateRegistry } = this.props.pageDependencies;
+    const { authenticationState } = stateRegistry;
+
     return (
       <div id="navigation" className="columns col-oneline">
         <div className="column col-sm-9 col-md-11">
@@ -37,7 +40,7 @@ export class NavigationBar extends React.Component<PageProps> {
           </div>
         </div>
         <div className="column col-sm-3 col-md-1">
-          <p>Right side of NavBar</p>
+          { authenticationState.isAuthenticated() && `${authenticationState.authAdmin!.first_name} ${authenticationState.authAdmin!.last_name}` }
         </div>
       </div>
     )

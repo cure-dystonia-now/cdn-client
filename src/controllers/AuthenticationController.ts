@@ -11,7 +11,7 @@ export class AuthenticationController extends BaseController {
     return this.getFullStoragePath(AUTH_ADMIN_STORAGE_KEY);
   }
 
-  public async loadLocalAuthAdmin(): Promise<void> {
+  public loadLocalAuthAdmin(): void {
     const { authenticationState } = this.stateRegistry;
 
     const rawAuthUser = localStorage.getItem(this.getAdministratorPath());

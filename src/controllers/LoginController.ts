@@ -25,7 +25,6 @@ export class LoginController extends BaseController {
         loginState.updateError(responsePayload.error || "error");
         return;
       }
-
     }
     catch (error) {
       loginState.updateError("error");
