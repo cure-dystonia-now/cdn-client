@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "brotli-webpack-plugin": "^1.0.0",
     "mobx": "^5.5.0",
     "mobx-react": "^5.3.4",
     "moment": "^2.22.2",

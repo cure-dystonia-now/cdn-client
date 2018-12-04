@@ -4,6 +4,6 @@ import { ApplicationConfiguration } from "../config/ApplicationConfiguration";
 
 export type PageDependencies = {
   stateRegistry: StateRegistry,
-  controllerRegistry: ControllerRegistry
+  controllerRegistry: ControllerRegistry,
   appConfig: ApplicationConfiguration
 }

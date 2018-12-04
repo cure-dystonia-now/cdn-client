@@ -12,6 +12,7 @@ import { PageDependencies } from "../definitions/dependencies/PageDependencies";
 import { NavigationBar } from "./navigation/NavigationBar";
 import { Footer } from "./footer/Footer";
 import { ApplicationRouter } from "./routers/ApplicationRouter";
+import { ServiceRegistry } from "../registries/ServiceRegistry";
 
 export class Application extends React.Component {
 
@@ -25,7 +26,8 @@ export class Application extends React.Component {
   private getPageDependencies(): PageDependencies {
     const stateRegistry = new StateRegistry();
     const appConfig = ConfigurationManager.getEnvironmentConfiguration();
-    const controllerRegistry = new ControllerRegistry(stateRegistry, appConfig);
+    const serviceRegistry = new ServiceRegistry(appConfig);
+    const controllerRegistry = new ControllerRegistry(stateRegistry, serviceRegistry, appConfig);
     return { stateRegistry, controllerRegistry, appConfig };
   }
 

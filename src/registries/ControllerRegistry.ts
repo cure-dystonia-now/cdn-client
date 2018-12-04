@@ -5,19 +5,24 @@ import { AuthenticationController } from "../controllers/AuthenticationControlle
 import { EventController } from "../controllers/EventController";
 import { LoginController } from "../controllers/LoginController";
 import { ResearchController } from "../controllers/ResearchController";
+import { ServiceRegistry } from "./ServiceRegistry";
+import { DashboardController } from "../controllers/DashboardController";
 
 export class ControllerRegistry {
 
   public readonly authenticationController: AuthenticationController;
+  public readonly dashboardController: DashboardController;
   public readonly eventController: EventController;
   public readonly loginController: LoginController;
   public readonly researchController: ResearchController;
 
-  constructor(stateRegistry: StateRegistry, appConfig: ApplicationConfiguration) {
-    this.authenticationController = new AuthenticationController(stateRegistry, appConfig);
-    this.eventController = new EventController(stateRegistry, appConfig);
-    this.loginController = new LoginController(stateRegistry, appConfig, this.authenticationController);
-    this.researchController = new ResearchController(stateRegistry, appConfig);
+  constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration) {
+    this.authenticationController = new AuthenticationController(stateRegistry, serviceRegistry, appConfig);
+    this.dashboardController = new DashboardController(stateRegistry, serviceRegistry, appConfig);
+    this.eventController = new EventController(stateRegistry, serviceRegistry, appConfig);
+    /* TODO: Move logic to auth service */
+    this.loginController = new LoginController(stateRegistry, serviceRegistry, appConfig, this.authenticationController);
+    this.researchController = new ResearchController(stateRegistry, serviceRegistry, appConfig);
     this.authenticationController.loadLocalAuthAdmin();
   }
 

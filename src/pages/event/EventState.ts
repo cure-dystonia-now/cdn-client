@@ -15,7 +15,7 @@ export class EventState {
 
   @bind
   @action
-  public updateEvent(event?: Event) {
+  public updateEvent(event: Event) {
     this.event = event;
   }
 

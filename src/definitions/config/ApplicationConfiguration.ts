@@ -6,5 +6,8 @@ export type ApplicationConfiguration = {
   },
   storage: {
     superKey: string
+  },
+  dashboard: {
+    eventsPerPage: number
   }
 }

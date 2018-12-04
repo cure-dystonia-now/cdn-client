@@ -2,13 +2,14 @@ import { BaseController } from "./BaseController";
 import { StateRegistry } from "../state/StateRegistry";
 import { ApplicationConfiguration } from "../definitions/config/ApplicationConfiguration";
 import { AuthenticationController } from "./AuthenticationController";
+import { ServiceRegistry } from "../registries/ServiceRegistry";
 
 export class LoginController extends BaseController {
 
   private readonly authController: AuthenticationController;
 
-  constructor(stateRegistry: StateRegistry, appConfig: ApplicationConfiguration, authController: AuthenticationController) {
-    super(stateRegistry, appConfig);
+  constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration, authController: AuthenticationController) {
+    super(stateRegistry, serviceRegistry, appConfig);
     this.authController = authController;
   }
 

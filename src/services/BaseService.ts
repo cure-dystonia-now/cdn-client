@@ -1,16 +1,10 @@
-import { StateRegistry } from "../state/StateRegistry";
 import { ApplicationConfiguration } from "../definitions/config/ApplicationConfiguration";
-import { ServiceRegistry } from "../registries/ServiceRegistry";
 
-export class BaseController {
+export class BaseService {
 
-  protected readonly stateRegistry: StateRegistry;
-  protected readonly serviceRegistry: ServiceRegistry;
   protected readonly appConfig: ApplicationConfiguration;
 
-  public constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration) {
-    this.stateRegistry = stateRegistry;
-    this.serviceRegistry = serviceRegistry;
+  constructor(appConfig: ApplicationConfiguration) {
     this.appConfig = appConfig;
   }
 

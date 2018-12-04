@@ -1,0 +1,54 @@
+import * as React from "react";
+import { StatefulComponent } from "../../../definitions/props/PageProps";
+import { observer } from "mobx-react";
+import { Event } from "../../../definitions/types/Event";
+import { DateFormatHelper } from "../../../utilities/helpers/DateFormatHelper";
+import bind from "bind-decorator";
+
+@observer
+export class EventManagementSubView extends React.Component<StatefulComponent> {
+
+  async componentDidMount() {
+    const { controllerRegistry } = this.props.pageDependencies;
+    const { dashboardController } = controllerRegistry;
+    await dashboardController.fetchEvents();
+  }
+
+  @bind
+  private getTableRow(event: Event) {
+    return (
+      <tr className="active" key={event.id}>
+        <td>{event.id}</td>
+        <td>{event.name}</td>
+        <td>{DateFormatHelper.formatEvent(event.date)}</td>
+        <td>{DateFormatHelper.formatEvent(event.created_at)}</td>
+      </tr>
+    )
+  }
+
+  render(): React.ReactNode {
+    const { stateRegistry } = this.props.pageDependencies;
+    const { dashboardState } = stateRegistry;
+    return (
+      <div>
+        <div className="columns">
+        </div>
+        <h2>Event Management</h2>
+        <table className="table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Created</th>
+          </tr>
+          </thead>
+          <tbody>
+          { dashboardState.events.map(event => this.getTableRow(event)) }
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+}

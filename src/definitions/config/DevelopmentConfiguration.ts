@@ -8,5 +8,8 @@ export const DevelopmentConfiguration: ApplicationConfiguration = {
   },
   storage: {
     superKey: "@CDN_DEVELOPMENT"
+  },
+  dashboard: {
+    eventsPerPage: 10
   }
 };
