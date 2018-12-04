@@ -49,6 +49,13 @@ export class DashboardPage extends React.Component<PagePropsGeneric> {
               </li>
               <li className="divider"/>
               <li className="menu-item">
+                <Link to={`${this.props.match.url}/ticket-analytics`}>
+                  <i className="icon icon-people"/>
+                  &nbsp; Donor Registry
+                </Link>
+              </li>
+              <li className="divider"/>
+              <li className="menu-item">
                 <Link to={`${this.props.match.url}/logout`}>
                   <i className="icon icon-shutdown"/>
                   &nbsp; Logout

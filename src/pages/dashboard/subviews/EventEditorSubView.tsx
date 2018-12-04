@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactQuill from 'react-quill';
+import Quill from "quill";
 
 import { EventEditorSubViewProps } from "../../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
@@ -18,10 +18,10 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
   }
 
   @bind
-  private onEditorChange(value: string) {
+  private onFieldChange(field: string, value: string): void {
     const { stateRegistry } = this.props.pageDependencies;
     const { eventEditorState } = stateRegistry.dashboardState;
-    eventEditorState.updateField("description", value);
+    eventEditorState.updateEditorState(editorState);
   }
 
   render(): React.ReactNode {
@@ -35,7 +35,6 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
           <input className="form-input" type="text" disabled value={eventEditorState.id}/>
         </div>
         )}
-        <ReactQuill onChange={this.onEditorChange} value={eventEditorState.fields.description || ""}/>
       </div>
     )
   }
