@@ -1,5 +1,6 @@
 import { action, observable } from "mobx";
 import bind from "bind-decorator";
+import { Event } from "../../definitions/types/Event";
 
 export class EventListingState {
 
@@ -9,8 +10,12 @@ export class EventListingState {
   @observable
   public loading: boolean;
 
+  @observable
+  public events: Array<Event>;
+
   constructor() {
     this.loading = true;
+    this.events = [];
   }
 
   @bind
@@ -23,6 +28,12 @@ export class EventListingState {
   @action
   public updateLoading(loading: boolean) {
     this.loading = loading;
+  }
+
+  @bind
+  @action
+  public updateEvents(events: Array<Event>) {
+    this.events = events;
   }
 
 }

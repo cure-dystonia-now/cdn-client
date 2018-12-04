@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { Event } from "../definitions/types/Event";
 import { ControllerService } from "./generic/ControllerService";
+import { Event } from "../definitions/types/Event";
 
 export class EventsService extends ControllerService {
 

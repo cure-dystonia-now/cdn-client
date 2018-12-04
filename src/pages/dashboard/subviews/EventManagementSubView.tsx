@@ -37,8 +37,13 @@ export class EventManagementSubView extends React.Component<StatefulComponent> {
     return (
       <div>
         <div className="columns">
+          <div className="column">
+            <h2 style={{marginTop: 0}}>Event Management</h2>
+          </div>
+          <div className="column">
+            <Link style={{alignSelf: "end"}} className="btn btn-success" to="/dashboard/edit-event">Create Event</Link>
+          </div>
         </div>
-        <h2>Event Management</h2>
         <table className="table">
           <thead>
           <tr>

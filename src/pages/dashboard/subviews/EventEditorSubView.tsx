@@ -7,6 +7,32 @@ import ReactQuill from "react-quill";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 
+/*
+ * Quill modules to attach to editor
+ * See https://quilljs.com/docs/modules/ for complete options
+ */
+const modules = {
+  toolbar: [
+    [{ 'header': '1'}, {'header': '2'}],
+    [{size: []}],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{'list': 'ordered'}, {'list': 'bullet'},
+      {'indent': '-1'}, {'indent': '+1'}],
+    ['link', 'image'],
+    ['clean']
+  ]
+}
+/*
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+const formats = [
+  'header', 'font', 'size',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image', 'video'
+]
+
 @inject("pageDependencies")
 @observer
 export class EventEditorSubView extends React.Component<EventEditorSubViewProps> {
@@ -75,7 +101,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
           <input className="form-input" type="text" onChange={this.onFieldChange.bind(this, "name")} value={fields.name}/>
         </div>
         <label className="form-label">Event Description</label>
-        <ReactQuill value={fields.description} onChange={this.onEditorChange}/>
+        <ReactQuill modules={modules} formats={formats} value={fields.description} onChange={this.onEditorChange}/>
         <br/>
         <div className="columns">
           <div className="column column-md-12 column-6">
