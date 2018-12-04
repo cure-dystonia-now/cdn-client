@@ -1,9 +1,10 @@
 import * as React from "react";
-import Quill from "quill";
+import { EditorState } from "draft-js";
 
 import { EventEditorSubViewProps } from "../../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
 import bind from "bind-decorator";
+import { Editor } from "react-draft-wysiwyg";
 
 @inject("pageDependencies")
 @observer
@@ -18,7 +19,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
   }
 
   @bind
-  private onFieldChange(field: string, value: string): void {
+  public onEditorChange(editorState: EditorState): void {
     const { stateRegistry } = this.props.pageDependencies;
     const { eventEditorState } = stateRegistry.dashboardState;
     eventEditorState.updateEditorState(editorState);
@@ -35,6 +36,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
           <input className="form-input" type="text" disabled value={eventEditorState.id}/>
         </div>
         )}
+        <Editor editorState={eventEditorState.editorState} onEditorStateChange={this.onEditorChange}/>
       </div>
     )
   }

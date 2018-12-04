@@ -1,4 +1,5 @@
 import { BaseController } from "../../BaseController";
+import { EditorState, ContentState } from "draft-js";
 
 export class EventEditorController extends BaseController {
 
@@ -12,7 +13,8 @@ export class EventEditorController extends BaseController {
     try {
       const event = await eventsService.fetchEvent(eventEditorState.id);
       if (!event) return;
-      eventEditorState.updateField("description", event.description);
+      const content = ContentState.createFromText(event.description);
+      eventEditorState.updateEditorState(EditorState.createWithContent(content));
     }
     catch (error) {
       console.error(error);
