@@ -27,4 +27,11 @@ export class EventsService extends ControllerService {
     if (!result.success) throw Error(result.error || "Could not update event");
   }
 
+  public async createEvent(event: Event): Promise<number> {
+    const url = `${this.getBackendUrl()}/events/create`;
+    const result = await this.post(url, event, { withCredentials: true });
+    if (!result.success) throw Error(result.error || "Could not create event");
+    return result.id;
+  }
+
 }

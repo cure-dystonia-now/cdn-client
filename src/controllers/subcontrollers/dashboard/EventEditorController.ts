@@ -21,6 +21,10 @@ export class EventEditorController extends BaseController {
       if (eventEditorState.id) {
         await eventsService.updateEvent(editedEvent);
       }
+      else {
+        const id = await eventsService.createEvent(editedEvent);
+        window.location.href = `/dashboard/edit-event/${id}`;
+      }
     }
     catch (error) {
       console.error(error);
