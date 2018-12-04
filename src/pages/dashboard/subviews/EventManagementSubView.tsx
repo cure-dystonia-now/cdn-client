@@ -23,7 +23,7 @@ export class EventManagementSubView extends React.Component<StatefulComponent> {
         <td>{event.id}</td>
         <td>{event.name}</td>
         <td>{DateFormatHelper.formatEvent(event.date)}</td>
-        <td>{DateFormatHelper.formatEvent(event.created_at)}</td>
+        <td>{DateFormatHelper.formatEvent(event.created_at!)}</td>
         <td>
           <Link to={`/dashboard/edit-event/${event.id}`} className="btn">Edit</Link>
         </td>

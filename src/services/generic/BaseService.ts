@@ -1,4 +1,4 @@
-import { ApplicationConfiguration } from "../definitions/config/ApplicationConfiguration";
+import { ApplicationConfiguration } from "../../definitions/config/ApplicationConfiguration";
 
 export class BaseService {
 

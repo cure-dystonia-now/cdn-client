@@ -1,16 +1,49 @@
+import moment from "moment";
 import { BaseController } from "../../BaseController";
+import { Event } from "../../../definitions/types/Event";
+import bind from "bind-decorator";
 
 export class EventEditorController extends BaseController {
 
+  @bind
   public async submit(): Promise<void> {
+    const { eventsService } = this.serviceRegistry;
+
     const { dashboardState } = this.stateRegistry;
     const { eventEditorState } = dashboardState;
 
     eventEditorState.validateFields();
     if (eventEditorState.invalidFields.length > 0) return;
 
-    if (eventEditorState.id) {
+    eventEditorState.updateSubmitting(true);
+    try {
+      const editedEvent = this.getCurrentStateEvent();
+      if (eventEditorState.id) {
+        await eventsService.updateEvent(editedEvent);
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+    finally {
+      eventEditorState.updateSubmitting(false);
+    }
+  }
 
+  private getCurrentStateEvent(): Event {
+    const { dashboardState } = this.stateRegistry;
+    const { eventEditorState } = dashboardState;
+    const { fields, id, date } = eventEditorState;
+
+    return {
+      id: Number(id) || 0,
+      name: fields.name!,
+      description: fields.description!,
+      street_address: fields.street_address!,
+      city: fields.city!,
+      state: fields.state!,
+      zipcode: fields.zipcode!,
+      date: date.format()
     }
   }
 
@@ -31,6 +64,7 @@ export class EventEditorController extends BaseController {
       eventEditorState.updateField("city", event.city);
       eventEditorState.updateField("state", event.state);
       eventEditorState.updateField("zipcode", event.zipcode);
+      eventEditorState.updateDate(moment.parseZone(event.date));
     }
     catch (error) {
       console.error(error);

@@ -40,8 +40,16 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
     eventEditorState.updateDate(moment(date));
   }
 
-  render(): React.ReactNode {
+  @bind
+  private getButtonClass(): string {
     const { stateRegistry } = this.props.pageDependencies;
+    const { eventEditorState } = stateRegistry.dashboardState;
+    return eventEditorState.submitting ? "btn btn-primary loading" : "btn btn-primary";
+  }
+
+  render(): React.ReactNode {
+    const { stateRegistry, controllerRegistry } = this.props.pageDependencies;
+    const { eventEditorController } = controllerRegistry.dashboardController;
     const { eventEditorState } = stateRegistry.dashboardState;
     const { fields, date } = eventEditorState;
     return (
@@ -58,7 +66,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
           <div className="column column-md-12 column-6">
             <div className="form-group">
               <label className="form-label">Event Date</label>
-              <DatePicker dateFormat="Pp" showTimeSelect className="form-input" selected={date.toDate()} onChange={this.onDateChange} />
+              <DatePicker dateFormat="Pp" showTimeSelect className="form-input date-input" selected={date.toDate()} onChange={this.onDateChange} />
             </div>
           </div>
         </div>
@@ -67,7 +75,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
           <input className="form-input" type="text" onChange={this.onFieldChange.bind(this, "name")} value={fields.name}/>
         </div>
         <label className="form-label">Event Description</label>
-        <ReactQuill value={fields.description || ""} onChange={this.onEditorChange}/>
+        <ReactQuill value={fields.description} onChange={this.onEditorChange}/>
         <br/>
         <div className="columns">
           <div className="column column-md-12 column-6">
@@ -91,7 +99,7 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
             </div>
           </div>
         </div>
-        { eventEditorState.id ? <button className="btn btn-primary">Update</button> : <button className="btn btn-primary">Create</button> }
+        <button onClick={eventEditorController.submit} className={this.getButtonClass()}>{ eventEditorState.id ? "Update" : "Create" } Event</button>
       </div>
     )
   }

@@ -18,11 +18,22 @@ export class EventEditorState {
   @observable
   public date: Moment;
 
+  @observable
+  public submitting: boolean;
+
   constructor(id?: number) {
     this.id = id;
     this.invalidFields = [];
-    this.fields = {};
+    this.fields = {
+      name: "",
+      street_address: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      description: ""
+    };
     this.date = moment();
+    this.submitting = false;
   }
 
   @bind
@@ -36,6 +47,13 @@ export class EventEditorState {
   updateDate(date: Moment): void {
     this.date = date;
   }
+
+  @bind
+  @action
+  updateSubmitting(submitting: boolean): void {
+    this.submitting = submitting;
+  }
+
 
   @bind
   @action
