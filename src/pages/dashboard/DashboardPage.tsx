@@ -11,6 +11,7 @@ export class DashboardPage extends React.Component<PagePropsGeneric> {
   render(): React.ReactNode {
     return (
       <div id="dashboardPage">
+        <h1>Administrator Dashboard</h1>
         <div className="columns">
           <div className="column col-3 col-sm-12">
             <ul className="menu">

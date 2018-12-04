@@ -1,10 +1,12 @@
 import * as React from "react";
 import { StatefulComponent } from "../../../definitions/props/PageProps";
-import { observer } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import { Event } from "../../../definitions/types/Event";
 import { DateFormatHelper } from "../../../utilities/helpers/DateFormatHelper";
 import bind from "bind-decorator";
+import { Link } from "react-router-dom";
 
+@inject("pageDependencies")
 @observer
 export class EventManagementSubView extends React.Component<StatefulComponent> {
 
@@ -22,6 +24,9 @@ export class EventManagementSubView extends React.Component<StatefulComponent> {
         <td>{event.name}</td>
         <td>{DateFormatHelper.formatEvent(event.date)}</td>
         <td>{DateFormatHelper.formatEvent(event.created_at)}</td>
+        <td>
+          <Link to={`/dashboard/edit-event/${event.id}`} className="btn">Edit</Link>
+        </td>
       </tr>
     )
   }
@@ -41,6 +46,7 @@ export class EventManagementSubView extends React.Component<StatefulComponent> {
             <th>Name</th>
             <th>Date</th>
             <th>Created</th>
+            <th/>
           </tr>
           </thead>
           <tbody>

@@ -19,5 +19,10 @@ type DashboardSubProps = {
   subView: string
 }
 
+type EventEditorSubProps = {
+  id?: number
+}
+
 export type EventPageProps = PageProps<EventProps>;
 export type DashboardSubViewProps = PageProps<DashboardSubProps>;
+export type EventEditorSubViewProps = PageProps<EventEditorSubProps>;
