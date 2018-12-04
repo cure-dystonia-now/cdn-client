@@ -20,9 +20,8 @@ export class LoginController extends BaseController {
 
     try {
       const response = await this.authController.submitCredentialsToBackend(loginState.email!, loginState.password!);
-      const responsePayload = response.data;
-      if (!responsePayload.success) {
-        loginState.updateError(responsePayload.error || "error");
+      if (!response.success) {
+        loginState.updateError(response.error || "error");
         return;
       }
     }

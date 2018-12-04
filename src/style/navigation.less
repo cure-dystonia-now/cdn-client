@@ -1,32 +1,7 @@
 #navigation {
   background: @gray2;
-  .link-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    .link {
-      transition: 200ms cubic-bezier(.22,.61,.36,1) background;
-      text-decoration: none;
-      padding: 30px 40px;
-      .text {
-        color: @cdn-blue;
-        font-weight: 500;
-        &:hover {
-          color: @cdn-blue-light;
-        }
-      }
-    }
-    .active {
-      background: @cdn-blue;
-      .text {
-        color: @gray0;
-        &:hover {
-          color: @gray0;
-          text-decoration: none;
-        }
-      }
-    }
+  padding: 20px 50px;
+  a {
+    padding: 0 20px;
   }
 }

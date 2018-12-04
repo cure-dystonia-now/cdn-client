@@ -1,13 +1,15 @@
 import React from "react";
 import { Route } from "react-router";
-import { HomePage } from "../../pages/home/HomePage";
-import { ResearchPage } from "../../pages/research/ResearchPage";
-import { AboutPage } from "../../pages/about/AboutPage";
-import { LoginPage } from "../../pages/login/LoginPage";
+
 import { AuthenticatedRoute } from "./AuthenticatedRoute";
 import { StatefulComponent } from "../../definitions/props/PageProps";
-import { EventPage } from "../../pages/event/EventPage";
 
+import { HomePage } from "../../pages/home/HomePage";
+import { AboutPage } from "../../pages/about/AboutPage";
+import { LoginPage } from "../../pages/login/LoginPage";
+import { EventPage } from "../../pages/event/EventPage";
+import { ResearchPage } from "../../pages/research/ResearchPage";
+import { DashboardPage } from "../../pages/dashboard/DashboardPage";
 
 export class ApplicationRouter extends React.Component<StatefulComponent> {
 
@@ -18,7 +20,8 @@ export class ApplicationRouter extends React.Component<StatefulComponent> {
       <div>
         <Route exact path="/" component={HomePage}/>
         <Route path="/research" component={ResearchPage}/>
-        <AuthenticatedRoute isAuthenticated={isAuthenticated} path="/about" component={AboutPage}/>
+        <Route path="/about" component={AboutPage}/>
+        <AuthenticatedRoute isAuthenticated={isAuthenticated} path="/dashboard" component={DashboardPage}/>
         <Route path="/event/:id" component={EventPage}/>
         <Route path="/login" component={LoginPage}/>
       </div>

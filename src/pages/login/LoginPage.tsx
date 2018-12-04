@@ -3,6 +3,7 @@ import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
 
 import { PagePropsGeneric } from "../../definitions/props/PageProps";
+import { Redirect } from "react-router";
 
 @inject("pageDependencies")
 @observer
@@ -40,7 +41,8 @@ export class LoginPage extends React.Component<PagePropsGeneric> {
 
   render(): React.ReactNode {
     const { stateRegistry } = this.props.pageDependencies;
-    const { loginState } = stateRegistry;
+    const { loginState, authenticationState } = stateRegistry;
+    if (authenticationState.isAuthenticated()) return <Redirect to="/dashboard"/>;
     return (
       <div id="loginPage" className="container columns">
         <div className="column col-mx-auto col-sm-12 col-md-8 col-5">

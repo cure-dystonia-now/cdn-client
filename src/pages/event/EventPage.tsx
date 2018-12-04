@@ -2,6 +2,7 @@ import * as React from "react";
 import { EventPageProps } from "../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
 import ReactMarkdown from "react-markdown";
+import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
 
 @inject("pageDependencies")
 @observer
@@ -22,16 +23,24 @@ export class EventPage extends React.Component<EventPageProps> {
       )
     }
     return (
-      <div id="eventPage" className="container">
+      <div id="eventPage">
         <div className="columns">
-          <div className="column col-sm-12 col-8">
+          <div className="column col-md-12 col-8">
             <div className="description-wrapper">
               <h1>{event.name}</h1>
               <hr/>
               <ReactMarkdown source={event.description}/>
             </div>
           </div>
-          <div className="column col-sm-12 col-4">
+          <div className="column col-md-12 col-4">
+            <div className="info-wrapper">
+              <button className="btn btn-primary btn-lg">Purchase Tickets</button>
+              <h3>Date</h3>
+              <p>{DateFormatHelper.formatEvent(event.date)}</p>
+              <br/>
+              <h3>Location</h3>
+              <p>{event.street_address},<br/>{event.city}, {event.state} {event.zipcode}</p>
+            </div>
           </div>
         </div>
       </div>

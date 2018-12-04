@@ -1,8 +1,16 @@
 #eventPage {
-  margin: 60px;
+  margin: 120px 60px 200px;
+  @media @tablet-down {
+    margin: 100px 0;
+  }
   .description-wrapper {
+    margin-right: 60px;
+    @media @tablet-down {
+      margin-right: 0;
+    }
     h1 {
       font-weight: 100;
+      font-size: 2.5em;
     }
     hr {
       margin-bottom: 1.414em;
@@ -15,5 +23,22 @@
     img {
       max-width: 100%;
     }
+  }
+  .info-wrapper {
+    @media @tablet-down {
+      margin-top: 100px;
+    }
+    .btn {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+    h3 {
+      font-weight: 400;
+      font-size: 1.3em;
+      margin: 0 0 10px;
+    }
+    background: #F7F7F7;
+    padding: 40px 50px;
+    border-radius: 3px;
   }
 }
