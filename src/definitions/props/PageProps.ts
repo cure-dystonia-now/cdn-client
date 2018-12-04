@@ -23,6 +23,11 @@ type EventEditorSubProps = {
   id?: number
 }
 
+type EventListingProps = {
+  page?: number
+}
+
 export type EventPageProps = PageProps<EventProps>;
 export type DashboardSubViewProps = PageProps<DashboardSubProps>;
 export type EventEditorSubViewProps = PageProps<EventEditorSubProps>;
+export type EventListingPageProps = PageProps<EventListingProps>;

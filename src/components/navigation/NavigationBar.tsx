@@ -30,7 +30,7 @@ export class NavigationBar extends React.Component<StatefulComponent> {
           <Link to="/" className="btn btn-link">Home</Link>
           <Link to="/about" className="btn btn-link">About</Link>
           <Link to="/research" className="btn btn-link">Research</Link>
-          <Link to="/" className="btn btn-link">Events</Link>
+          <Link to="/events" className="btn btn-link">Events</Link>
         </section>
         <section className="navbar-section"></section>
         {/*<div className="column col-sm-9 col-md-11">*/}

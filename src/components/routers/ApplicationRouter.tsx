@@ -10,6 +10,7 @@ import { LoginPage } from "../../pages/login/LoginPage";
 import { EventPage } from "../../pages/event/EventPage";
 import { ResearchPage } from "../../pages/research/ResearchPage";
 import { DashboardPage } from "../../pages/dashboard/DashboardPage";
+import { EventListingPage } from "../../pages/event_listing/EventListingPage";
 
 export class ApplicationRouter extends React.Component<StatefulComponent> {
 
@@ -23,6 +24,7 @@ export class ApplicationRouter extends React.Component<StatefulComponent> {
         <Route path="/about" component={AboutPage}/>
         <AuthenticatedRoute isAuthenticated={isAuthenticated} path="/dashboard" component={DashboardPage}/>
         <Route path="/event/:id" component={EventPage}/>
+        <Route path="/events" component={EventListingPage}/>
         <Route path="/login" component={LoginPage}/>
       </div>
     )

@@ -11,5 +11,8 @@ export const DevelopmentConfiguration: ApplicationConfiguration = {
   },
   dashboard: {
     eventsPerPage: 10
+  },
+  eventListing: {
+    eventsPerPage: 5
   }
 };

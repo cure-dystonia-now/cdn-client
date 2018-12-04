@@ -4,11 +4,13 @@ import { NavigationBarState } from "../components/navigation/NavigationBarState"
 import { AuthenticationState } from "./AuthenticationState";
 import { EventState } from "../pages/event/EventState";
 import { DashboardState } from "../pages/dashboard/DashboardState";
+import { EventListingState } from "../pages/event_listing/EventListingState";
 
 export class StateRegistry {
 
   public readonly authenticationState: AuthenticationState;
   public readonly dashboardState: DashboardState;
+  public readonly eventListingState: EventListingState;
   public readonly eventState: EventState;
   public readonly homeState: HomeState;
   public readonly loginState: LoginState;
@@ -17,6 +19,7 @@ export class StateRegistry {
   constructor() {
     this.authenticationState = new AuthenticationState();
     this.dashboardState = new DashboardState();
+    this.eventListingState = new EventListingState();
     this.eventState = new EventState();
     this.homeState = new HomeState();
     this.loginState = new LoginState();

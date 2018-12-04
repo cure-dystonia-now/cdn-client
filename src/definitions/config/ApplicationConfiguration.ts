@@ -9,5 +9,8 @@ export type ApplicationConfiguration = {
   },
   dashboard: {
     eventsPerPage: number
+  },
+  eventListing: {
+    eventsPerPage: number
   }
 }
