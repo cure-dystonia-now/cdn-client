@@ -1,7 +1,6 @@
 import * as React from "react";
 import { EventPageProps } from "../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
-import ReactMarkdown from "react-markdown";
 import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
 
 @inject("pageDependencies")
@@ -29,7 +28,7 @@ export class EventPage extends React.Component<EventPageProps> {
             <div className="description-wrapper">
               <h1>{event.name}</h1>
               <hr/>
-              <ReactMarkdown source={event.description}/>
+              <div dangerouslySetInnerHTML={{ __html: event.description }}/>
             </div>
           </div>
           <div className="column col-md-12 col-4">

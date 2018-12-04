@@ -1,7 +1,6 @@
 import { action, observable } from "mobx";
 import bind from "bind-decorator";
 import moment, { Moment } from "moment";
-import { EditorState } from "draft-js";
 
 const REQUIRED_FIELDS = ["name", "description", "street_address", "city", "state", "zipcode"];
 
@@ -9,9 +8,6 @@ export class EventEditorState {
 
   @observable
   public id?: number;
-
-  @observable
-  public editorState?: EditorState;
 
   @observable
   public fields: any;
@@ -27,7 +23,6 @@ export class EventEditorState {
     this.invalidFields = [];
     this.fields = {};
     this.date = moment();
-    this.editorState = EditorState.createEmpty();
   }
 
   @bind
@@ -38,8 +33,8 @@ export class EventEditorState {
 
   @bind
   @action
-  updateEditorState(editorState: EditorState) {
-    this.editorState = editorState;
+  updateDate(date: Moment): void {
+    this.date = date;
   }
 
   @bind
