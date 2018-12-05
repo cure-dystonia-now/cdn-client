@@ -23,7 +23,10 @@ export class EventListingPage extends React.Component<EventListingPageProps> {
         <Link className="title" to={`/event/${event.id!}`}>
           {event.name}
         </Link>
-        <p>{DateFormatHelper.formatEvent(event.date)}</p>
+        <br/>
+        <span>{DateFormatHelper.formatEvent(event.date)}</span>
+        <br/>
+        <span>{event.city}, {event.state}</span>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { EventEditorSubViewProps } from "../../../definitions/props/PageProps";
+import { ContentEditorSubViewProps } from "../../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
 import bind from "bind-decorator";
 import ReactQuill from "react-quill";
@@ -31,17 +31,17 @@ const formats = [
   'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent',
   'link', 'image', 'video'
-]
+];
 
 @inject("pageDependencies")
 @observer
-export class EventEditorSubView extends React.Component<EventEditorSubViewProps> {
+export class EventEditorSubView extends React.Component<ContentEditorSubViewProps> {
 
   async componentDidMount(): Promise<void> {
     const { dashboardState } = this.props.pageDependencies.stateRegistry;
     const { dashboardController } = this.props.pageDependencies.controllerRegistry;
 
-    dashboardState.resetEditorState(this.props.match.params.id);
+    dashboardState.resetEventEditorState(this.props.match.params.id);
     await dashboardController.eventEditorController.populateFields();
   }
 

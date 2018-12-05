@@ -27,6 +27,11 @@ export class ControllerService extends BaseService {
     throw error;
   }
 
+  protected async get(url: string, options?: AxiosRequestConfig): Promise<any> {
+    const response = await this.axiosInstance.get(url, options);
+    return response.data;
+  }
+
   protected async post(url: string, payload: any, options?: AxiosRequestConfig): Promise<any> {
     const response = await this.axiosInstance.post(url, payload, options);
     return response.data;
