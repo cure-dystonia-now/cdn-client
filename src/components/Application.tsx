@@ -24,6 +24,11 @@ export class Application extends React.Component {
     this.pageDependencies = this.getPageDependencies();
   }
 
+  componentWillMount(): void {
+    const { authenticationController } = this.pageDependencies.controllerRegistry;
+    authenticationController.loadLocalAuthAdmin();
+  }
+
   private getPageDependencies(): PageDependencies {
     const stateRegistry = new StateRegistry();
     const appConfig = ConfigurationManager.getEnvironmentConfiguration();

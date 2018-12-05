@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { BaseController } from "./BaseController";
 import { Administrator } from "../definitions/Administrator";
 
@@ -12,13 +10,11 @@ export class AuthenticationController extends BaseController {
   }
 
   public loadLocalAuthAdmin(): void {
+    const { authenticationService } = this.serviceRegistry;
     const { authenticationState } = this.stateRegistry;
 
-    const rawAuthUser = localStorage.getItem(this.getAdministratorPath());
-    if (!rawAuthUser) return;
-
-    const authUser = JSON.parse(rawAuthUser);
-    authenticationState.setAuthAdmin(authUser);
+    const authAdmin = authenticationService.loadLocalAuthAdmin();
+    if (authAdmin) authenticationState.setAuthAdmin(authAdmin);
   }
 
   public saveLocalAuthAdmin(admin: Administrator): void {
@@ -29,16 +25,6 @@ export class AuthenticationController extends BaseController {
 
   public removeAuthUser(): void {
     localStorage.removeItem(this.getAdministratorPath());
-  }
-
-  public async submitCredentialsToBackend(email: string, password: string): Promise<any> {
-    const payload = { email, password };
-    const config = { withCredentials: true };
-
-    const response = await axios.post(this.getBackendUrl() + "/authentication/login", payload, config);
-    this.saveLocalAuthAdmin(response.data.admin!);
-
-    return response.data;
   }
 
 }

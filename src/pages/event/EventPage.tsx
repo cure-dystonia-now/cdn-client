@@ -1,10 +1,12 @@
-import * as React from "react";
-import { EventPageProps } from "../../definitions/props/PageProps";
-import { inject, observer } from "mobx-react";
-import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
-import { EventPaymentModal } from "../../components/modals/EventPaymentModal";
+import React from "react";
 import bind from "bind-decorator";
+import { inject, observer } from "mobx-react";
 import { Elements } from "react-stripe-elements";
+
+import { EventPageProps } from "../../definitions/props/PageProps";
+import { EventPaymentModal } from "../../components/modals/EventPaymentModal";
+
+import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
 
 @inject("pageDependencies")
 @observer
@@ -18,13 +20,8 @@ export class EventPage extends React.Component<EventPageProps> {
   @bind
   private openPaymentModal() {
     const { eventState } = this.props.pageDependencies.stateRegistry;
+    eventState.resetPurchaseFields();
     eventState.updatePaymentModalOpen(true);
-  }
-
-  @bind
-  private closePaymentModal() {
-    const { eventState } = this.props.pageDependencies.stateRegistry;
-    eventState.updatePaymentModalOpen(false);
   }
 
 
@@ -62,7 +59,7 @@ export class EventPage extends React.Component<EventPageProps> {
           </div>
         </div>
         <Elements>
-          <EventPaymentModal pageDependencies={this.props.pageDependencies} closeCallback={this.closePaymentModal} open={eventState.paymentModalOpen}/>
+          <EventPaymentModal pageDependencies={this.props.pageDependencies}/>
         </Elements>
       </div>
     )

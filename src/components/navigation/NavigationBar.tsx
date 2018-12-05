@@ -21,8 +21,8 @@ export class NavigationBar extends React.Component<StatefulComponent> {
   }
 
   render() {
-    // const { stateRegistry } = this.props.pageDependencies;
-    // const { authenticationState } = stateRegistry;
+    const { stateRegistry } = this.props.pageDependencies;
+    const { authenticationState } = stateRegistry;
 
     return (
       <div id="navigation" className="navbar">
@@ -32,7 +32,11 @@ export class NavigationBar extends React.Component<StatefulComponent> {
           <Link to="/research" className="btn btn-link">Research</Link>
           <Link to="/events" className="btn btn-link">Events</Link>
         </section>
-        <section className="navbar-section"></section>
+        {authenticationState.isAuthenticated() &&
+          <section className="navbar-section">
+            <Link to="/dashboard" className="btn btn-link">Dashboard</Link>
+          </section>
+        }
         {/*<div className="column col-sm-9 col-md-11">*/}
           {/*<div className="link-wrapper">*/}
             {/*<div className={this.getLinkClass("home")}>*/}

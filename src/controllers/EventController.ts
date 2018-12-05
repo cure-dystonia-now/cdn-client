@@ -1,16 +1,17 @@
 import axios from "axios";
-import { BaseController } from "./BaseController";
 import bind from "bind-decorator";
+
 import { ReactStripeElements } from "react-stripe-elements";
 import StripeProps = ReactStripeElements.StripeProps;
 import TokenOptions = stripe.TokenOptions;
+
+import { BaseController } from "./BaseController";
 
 export class EventController extends BaseController {
 
   public async fetchEvent(eventId: number): Promise<void> {
     const { eventState } = this.stateRegistry;
     eventState.updateLoading(true);
-
 
     try {
       const url = this.getBackendUrl() + "/events/get";
@@ -48,15 +49,23 @@ export class EventController extends BaseController {
     eventState.validateFields();
     if (eventState.purchaseInvalidFields.length > 0) return;
     try {
+      eventState.updatePurchaseLoading(true);
       const stripeResponse = await stripe.createToken(this.getStripeTokenOptionsFromPurchaseForm());
-      if (stripeResponse.error || !stripeResponse.token) {
-        console.error(stripeResponse.error);
+      if (stripeResponse.error) {
+        eventState.updatePurchaseError(stripeResponse.error.message);
+        return;
+      }
+      if (!stripeResponse.token) {
+        eventState.updatePurchaseError("Payment Gateway Error");
         return;
       }
       await purchaseService.purchaseEventTicket(stripeResponse.token.id, eventState.purchaseFields, eventState.event!.id, eventState.ticketQuantity);
     }
     catch (error) {
-      console.error(error);
+      eventState.updatePurchaseError(error.message || "Payment Gateway Error");
+    }
+    finally {
+      eventState.updatePurchaseLoading(false);
     }
   }
 

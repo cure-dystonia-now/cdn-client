@@ -1,13 +1,13 @@
 import React from "react";
 import bind from "bind-decorator";
-import { PageDependencies } from "../../definitions/dependencies/PageDependencies";
-import { CardElement, ReactStripeElements, injectStripe } from "react-stripe-elements";
 import { observer } from "mobx-react";
+
+import { CardElement, ReactStripeElements, injectStripe } from "react-stripe-elements";
 import InjectedStripeProps = ReactStripeElements.InjectedStripeProps;
 
+import { PageDependencies } from "../../definitions/dependencies/PageDependencies";
+
 type PaymentModalProps = {
-  open: boolean,
-  closeCallback: Function,
   pageDependencies: PageDependencies
 }
 
@@ -16,7 +16,9 @@ class EventPaymentModalRaw extends React.Component<PaymentModalProps & InjectedS
 
   @bind
   private onCloseClick() {
-    this.props.closeCallback();
+    const { stateRegistry } = this.props.pageDependencies;
+    const { eventState } = stateRegistry;
+    eventState.updatePaymentModalOpen(false);
   }
 
   @bind
@@ -48,8 +50,14 @@ class EventPaymentModalRaw extends React.Component<PaymentModalProps & InjectedS
     event.preventDefault();
     const { controllerRegistry} = this.props.pageDependencies;
     const { eventController } = controllerRegistry;
-    console.log(this.props.stripe);
     await eventController.submitPayment(this.props.stripe!);
+  }
+
+  @bind
+  private async clearPaymentError() {
+    const { stateRegistry } = this.props.pageDependencies;
+    const { eventState } = stateRegistry;
+    eventState.updatePurchaseError(undefined);
   }
 
 
@@ -68,6 +76,14 @@ class EventPaymentModalRaw extends React.Component<PaymentModalProps & InjectedS
           </div>
           <div className="modal-body">
             <div className="content">
+              {
+                eventState.purchaseError &&
+                <div className="toast toast-primary">
+                  <button className="btn btn-clear float-right" onClick={this.clearPaymentError}/>
+                  {eventState.purchaseError}
+                </div>
+              }
+
               <h4>Purchaser Information</h4>
               <div className="columns">
                 <div className="column col-6 col-sm-12">
@@ -148,7 +164,7 @@ class EventPaymentModalRaw extends React.Component<PaymentModalProps & InjectedS
               <div className="payment-wrapper">
                 <form onSubmit={this.handleSubmit}>
                   <CardElement className="payment"/>
-                  <button style={{marginTop: 30}} disabled={subTotal === 0} className="btn btn-primary">{subTotal > 0 ? `Purchase $${subTotal}` : "Quantity Needed"}</button>
+                  <button style={{marginTop: 30}} disabled={subTotal === 0} className={`btn btn-primary ${eventState.purchaseLoading && "loading"}`}>{subTotal > 0 ? `Purchase $${subTotal}` : "Quantity Needed"}</button>
                 </form>
               </div>
             </div>

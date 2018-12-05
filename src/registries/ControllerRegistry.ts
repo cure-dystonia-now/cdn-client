@@ -23,10 +23,8 @@ export class ControllerRegistry {
     this.dashboardController = new DashboardController(stateRegistry, serviceRegistry, appConfig);
     this.eventListingController = new EventListingController(stateRegistry, serviceRegistry, appConfig);
     this.eventController = new EventController(stateRegistry, serviceRegistry, appConfig);
-    /* TODO: Move logic to auth service */
-    this.loginController = new LoginController(stateRegistry, serviceRegistry, appConfig, this.authenticationController);
+    this.loginController = new LoginController(stateRegistry, serviceRegistry, appConfig);
     this.researchController = new ResearchController(stateRegistry, serviceRegistry, appConfig);
-    this.authenticationController.loadLocalAuthAdmin();
   }
 
 }

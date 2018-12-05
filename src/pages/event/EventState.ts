@@ -24,12 +24,28 @@ export class EventState {
   @observable
   public purchaseInvalidFields: Array<string>;
 
+  @observable
+  public purchaseLoading: boolean;
+
+  @observable
+  public purchaseError?: string;
+
   constructor() {
     this.loading = false;
-    this.paymentModalOpen = true;
+    this.paymentModalOpen = false;
     this.ticketQuantity = 1;
     this.purchaseFields = {};
     this.purchaseInvalidFields = [];
+    this.purchaseLoading = false;
+  }
+
+  @bind
+  @action
+  public resetPurchaseFields() {
+    this.purchaseFields = {};
+    this.ticketQuantity = 1;
+    this.purchaseInvalidFields = [];
+    this.purchaseError = undefined;
   }
 
   @bind
@@ -60,6 +76,18 @@ export class EventState {
   @action
   public updatePurchaseField(field: string, value: string) {
     this.purchaseFields[field] = value;
+  }
+
+  @bind
+  @action
+  public updatePurchaseLoading(loading: boolean) {
+    this.purchaseLoading = loading;
+  }
+
+  @bind
+  @action
+  public updatePurchaseError(error?: string) {
+    this.purchaseError = error;
   }
 
   @bind

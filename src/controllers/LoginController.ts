@@ -1,30 +1,21 @@
 import { BaseController } from "./BaseController";
-import { StateRegistry } from "../state/StateRegistry";
-import { ApplicationConfiguration } from "../definitions/config/ApplicationConfiguration";
-import { AuthenticationController } from "./AuthenticationController";
-import { ServiceRegistry } from "../registries/ServiceRegistry";
 
 export class LoginController extends BaseController {
 
-  private readonly authController: AuthenticationController;
-
-  constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration, authController: AuthenticationController) {
-    super(stateRegistry, serviceRegistry, appConfig);
-    this.authController = authController;
-  }
-
   public async submitCredentials(): Promise<void> {
     const { loginState } = this.stateRegistry;
+    const { authenticationService } = this.serviceRegistry;
 
     loginState.validateFields();
     if (loginState.invalidFields.length > 0) return;
 
     try {
-      const response = await this.authController.submitCredentialsToBackend(loginState.email!, loginState.password!);
+      const response = await authenticationService.submitCredentialsToBackend(loginState.email!, loginState.password!);
       if (!response.success) {
         loginState.updateError(response.error || "error");
         return;
       }
+      authenticationService.saveLocalAuthAdmin(response.admin!);
     }
     catch (error) {
       loginState.updateError("error");

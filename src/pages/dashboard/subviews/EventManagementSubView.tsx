@@ -36,28 +36,24 @@ export class EventManagementSubView extends React.Component<StatefulComponent> {
     const { dashboardState } = stateRegistry;
     return (
       <div>
-        <div className="columns">
-          <div className="column">
-            <h2 style={{marginTop: 0}}>Event Management</h2>
-          </div>
-          <div className="column">
-            <Link style={{alignSelf: "end"}} className="btn btn-success" to="/dashboard/edit-event">Create Event</Link>
-          </div>
+        <h1 style={{marginTop: 0}}>Event Management</h1>
+        <Link style={{marginBottom: 30}} className="btn btn-success" to="/dashboard/edit-event">Create Event</Link>
+        <div className="event-mgmt-table-wrapper">
+          <table className="table">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Created</th>
+              <th/>
+            </tr>
+            </thead>
+            <tbody>
+            { dashboardState.events.map(event => this.getTableRow(event)) }
+            </tbody>
+          </table>
         </div>
-        <table className="table">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Created</th>
-            <th/>
-          </tr>
-          </thead>
-          <tbody>
-          { dashboardState.events.map(event => this.getTableRow(event)) }
-          </tbody>
-        </table>
       </div>
     )
   }
