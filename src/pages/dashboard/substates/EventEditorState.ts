@@ -30,7 +30,8 @@ export class EventEditorState {
       city: "",
       state: "",
       zipcode: "",
-      description: ""
+      description: "",
+      ticket_price: ""
     };
     this.date = moment();
     this.submitting = false;
@@ -38,7 +39,7 @@ export class EventEditorState {
 
   @bind
   @action
-  updateField(field: string, value?: string): void {
+  updateField(field: string, value?: string | number): void {
     this.fields[field] = value;
   }
 

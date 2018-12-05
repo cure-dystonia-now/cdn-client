@@ -113,6 +113,14 @@ export class EventEditorSubView extends React.Component<EventEditorSubViewProps>
               <label className="form-label">State</label>
               <input className="form-input" type="text" onChange={this.onFieldChange.bind(this, "state")} value={fields.state}/>
             </div>
+            <div className="form-group">
+              <label className="form-label">Ticket Price</label>
+              <div className="input-group">
+                <span className="input-group-addon">$</span>
+                <input className="form-input" type="text" onChange={this.onFieldChange.bind(this, "ticket_price")} value={fields.ticket_price}/>
+              </div>
+            </div>
+
           </div>
           <div className="column column-md-12 column-6">
             <div className="form-group">

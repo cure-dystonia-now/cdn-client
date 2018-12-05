@@ -47,7 +47,8 @@ export class EventEditorController extends BaseController {
       city: fields.city!,
       state: fields.state!,
       zipcode: fields.zipcode!,
-      date: date.format()
+      date: date.format(),
+      ticket_price: fields.ticket_price
     }
   }
 
@@ -68,6 +69,7 @@ export class EventEditorController extends BaseController {
       eventEditorState.updateField("city", event.city);
       eventEditorState.updateField("state", event.state);
       eventEditorState.updateField("zipcode", event.zipcode);
+      eventEditorState.updateField("ticket_price", event.ticket_price);
       eventEditorState.updateDate(moment.parseZone(event.date));
     }
     catch (error) {

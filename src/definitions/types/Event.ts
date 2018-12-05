@@ -7,5 +7,6 @@ export type Event = {
   state: string,
   zipcode: string,
   date: string,
-  created_at?: string
+  created_at?: string,
+  ticket_price?: number
 }
