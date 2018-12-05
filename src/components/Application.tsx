@@ -13,6 +13,7 @@ import { NavigationBar } from "./navigation/NavigationBar";
 import { Footer } from "./footer/Footer";
 import { ApplicationRouter } from "./routers/ApplicationRouter";
 import { ServiceRegistry } from "../registries/ServiceRegistry";
+import { StripeProvider } from "react-stripe-elements";
 
 export class Application extends React.Component {
 
@@ -32,8 +33,10 @@ export class Application extends React.Component {
   }
 
   render() {
+    const { appConfig } = this.pageDependencies;
     return (
       <BrowserRouter>
+        <StripeProvider apiKey={appConfig.stripe.publicKey}>
         <Provider pageDependencies={this.pageDependencies}>
           <div className="page-wrapper">
             <NavigationBar pageDependencies={this.pageDependencies}/>
@@ -43,6 +46,7 @@ export class Application extends React.Component {
             <Footer/>
           </div>
         </Provider>
+        </StripeProvider>
       </BrowserRouter>
     );
   }

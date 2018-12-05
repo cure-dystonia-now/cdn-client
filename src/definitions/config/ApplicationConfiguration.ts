@@ -12,5 +12,8 @@ export type ApplicationConfiguration = {
   },
   eventListing: {
     eventsPerPage: number
+  },
+  stripe: {
+    publicKey: string
   }
 }

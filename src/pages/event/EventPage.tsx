@@ -2,6 +2,9 @@ import * as React from "react";
 import { EventPageProps } from "../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
 import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
+import { EventPaymentModal } from "../../components/modals/EventPaymentModal";
+import bind from "bind-decorator";
+import { Elements } from "react-stripe-elements";
 
 @inject("pageDependencies")
 @observer
@@ -11,6 +14,19 @@ export class EventPage extends React.Component<EventPageProps> {
     const { eventController } = this.props.pageDependencies.controllerRegistry;
     await eventController.fetchEvent(this.props.match.params.id);
   }
+
+  @bind
+  private openPaymentModal() {
+    const { eventState } = this.props.pageDependencies.stateRegistry;
+    eventState.updatePaymentModalOpen(true);
+  }
+
+  @bind
+  private closePaymentModal() {
+    const { eventState } = this.props.pageDependencies.stateRegistry;
+    eventState.updatePaymentModalOpen(false);
+  }
+
 
   render(): React.ReactNode {
     const { eventState } = this.props.pageDependencies.stateRegistry;
@@ -33,15 +49,21 @@ export class EventPage extends React.Component<EventPageProps> {
           </div>
           <div className="column col-md-12 col-4">
             <div className="info-wrapper">
-              <button className="btn btn-primary btn-lg">Purchase Tickets</button>
-              <h3>Date</h3>
+              {
+                event.ticket_price &&
+                  <button onClick={this.openPaymentModal} className="btn btn-primary btn-lg">Purchase Tickets ${event.ticket_price}</button>
+              }
+              <h3><i className="icon icon-time"/>&nbsp;&nbsp;Date</h3>
               <p>{DateFormatHelper.formatEvent(event.date)}</p>
               <br/>
-              <h3>Location</h3>
+              <h3><i className="icon icon-location"/>&nbsp;&nbsp;Location</h3>
               <p>{event.street_address},<br/>{event.city}, {event.state} {event.zipcode}</p>
             </div>
           </div>
         </div>
+        <Elements>
+          <EventPaymentModal pageDependencies={this.props.pageDependencies} closeCallback={this.closePaymentModal} open={eventState.paymentModalOpen}/>
+        </Elements>
       </div>
     )
   }

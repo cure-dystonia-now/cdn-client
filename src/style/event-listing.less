@@ -1,0 +1,42 @@
+#eventListingPage {
+  margin: 120px 60px 200px;
+  @media @tablet-down {
+    margin: 100px 0;
+  }
+  .info-col, .event-col {
+    background: #F7F7F7;
+    border-radius: 3px;
+    padding: 40px 50px;
+    box-shadow: 0 0.05rem 0.2rem rgba(48, 55, 66, 0.3);
+    h1 {
+      font-size: 2em;
+      padding-bottom: 10px;
+      border-bottom: 1px solid @gray7;
+      font-weight: 100;
+    }
+    p {
+      font-size: 0.9em;
+    }
+  }
+  .event-col {
+    margin-left: 60px;
+    @media @tablet-down {
+      margin-left: 0;
+      margin-top: 60px;
+    }
+  }
+  .event-card {
+    border-bottom: 1px solid @gray3;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    &:last-of-type {
+      border-bottom: 0;
+    }
+    a {
+      font-size: 2em;
+      margin: 0;
+      font-weight: 100;
+      color: @cdn-blue;
+    }
+  }
+}

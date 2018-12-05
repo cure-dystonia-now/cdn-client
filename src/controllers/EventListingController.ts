@@ -7,8 +7,17 @@ export class EventListingController extends BaseController {
     const { eventsService } = this.serviceRegistry;
     const { eventsPerPage } = this.appConfig.eventListing;
     const startIndex = eventsPerPage * (eventListingState.page! - 1);
-    const events = await eventsService.fetchEventsBulk(startIndex, eventsPerPage);
-    eventListingState.updateEvents(events);
+    try {
+      eventListingState.updateLoading(true);
+      const events = await eventsService.fetchEventsBulk(startIndex, eventsPerPage);
+      eventListingState.updateEvents(events);
+    }
+    catch (error) {
+      console.error(error);
+    }
+    finally {
+      eventListingState.updateLoading(false);
+    }
   }
 
 }

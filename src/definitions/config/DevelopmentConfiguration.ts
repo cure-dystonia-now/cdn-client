@@ -14,5 +14,8 @@ export const DevelopmentConfiguration: ApplicationConfiguration = {
   },
   eventListing: {
     eventsPerPage: 5
+  },
+  stripe: {
+    publicKey: ""
   }
 };

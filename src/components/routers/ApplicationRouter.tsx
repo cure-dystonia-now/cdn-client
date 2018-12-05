@@ -24,7 +24,7 @@ export class ApplicationRouter extends React.Component<StatefulComponent> {
         <Route path="/about" component={AboutPage}/>
         <AuthenticatedRoute isAuthenticated={isAuthenticated} path="/dashboard" component={DashboardPage}/>
         <Route path="/event/:id" component={EventPage}/>
-        <Route path="/events" component={EventListingPage}/>
+        <Route path="/events/:page?" component={EventListingPage}/>
         <Route path="/login" component={LoginPage}/>
       </div>
     )
