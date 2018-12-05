@@ -6,6 +6,8 @@
 @import "event";
 @import "dashboard";
 @import "event-listing";
+@import "home";
+@import "research";
 
 html {
   background: url("../assets/images/background.png") repeat;
@@ -43,34 +45,6 @@ small, .font_small {font-size: 0.75em;}
 
 body {
   background: transparent;
-}
-
-.card-wrapper {
-  @media @tablet-down {
-    margin: 0;
-    .card {
-      margin: 40px 0!important;
-    }
-  }
-  margin: 80px 0;
-  h1 {
-    font-weight: 200;
-  }
-  .column {
-    &:first-child {
-      .card {
-        margin-right: 0;
-      }
-    }
-  }
-  .card {
-    border-radius: 3px;
-    border: 0;
-    border-left: 6px solid @cdn-blue;
-    box-shadow: 0 9px 15px rgba(50, 50, 93, 0), 0 8px 15px rgba(0, 0, 0, 0.04);
-    padding: 40px 50px;
-    margin: 0 80px 80px;
-  }
 }
 
 .page-wrapper {

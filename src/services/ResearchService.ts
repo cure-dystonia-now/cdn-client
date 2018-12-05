@@ -18,6 +18,13 @@ export class ResearchService extends ControllerService {
     return response.research_entries || [];
   }
 
+  public async getAll(): Promise<Array<Research>> {
+    const url = `${this.getBackendUrl()}/research/get-all`;
+    const response = await this.get(url);
+    if (!response.success) throw Error(response.error || "Could not fetch research");
+    return response.research_entries || [];
+  }
+
   public async update(research: Research): Promise<void> {
     if (!research.id) throw Error("Cannot update research without identifier");
     const url = `${this.getBackendUrl()}/research/update`;

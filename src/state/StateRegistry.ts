@@ -5,6 +5,7 @@ import { AuthenticationState } from "./AuthenticationState";
 import { EventState } from "../pages/event/EventState";
 import { DashboardState } from "../pages/dashboard/DashboardState";
 import { EventListingState } from "../pages/event_listing/EventListingState";
+import { ResearchState } from "../pages/research/ResearchState";
 
 export class StateRegistry {
 
@@ -15,6 +16,7 @@ export class StateRegistry {
   public readonly homeState: HomeState;
   public readonly loginState: LoginState;
   public readonly navigationBarState: NavigationBarState;
+  public readonly researchState: ResearchState;
 
   constructor() {
     this.authenticationState = new AuthenticationState();
@@ -24,6 +26,7 @@ export class StateRegistry {
     this.homeState = new HomeState();
     this.loginState = new LoginState();
     this.navigationBarState = new NavigationBarState();
+    this.researchState = new ResearchState();
   }
 
 }

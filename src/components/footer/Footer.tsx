@@ -13,6 +13,8 @@ export class Footer extends React.Component {
               <div className="divider-custom"/>
               <p>516-584-4156</p>
               <p>info@curedystonianow.org</p>
+              <br/>
+              <p style={{fontSize: 10, fontStyle: "italic"}}>Design and built by Aaron J. Shapiro</p>
             </div>
           </div>
           <div className="column col-6">

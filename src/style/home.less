@@ -1,0 +1,47 @@
+#homePage {
+  margin: 100px 50px;
+  h1 {
+    font-size: 2.2em;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid @gray7;
+    font-weight: 100;
+  }
+  p {
+    font-size: 0.7rem;
+  }
+  .card {
+    padding: 40px 50px;
+    background: #F7F7F7;
+    border-radius: .1rem;
+    box-shadow: 0 .05rem .2rem rgba(48,55,66,.3);
+  }
+  .donate-button {
+    box-shadow: 0 .05rem .2rem rgba(48,55,66,.3);
+    background: @cdn-blue;
+    color: @gray0;
+    display: block;
+    text-align: center;
+    border-radius: .1rem;
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    width: 100%;
+    text-decoration: none;
+    &:hover {
+      background: @cdn-blue-light;
+    }
+  }
+  .left-col {
+    .card {
+      margin-right: 50px;
+      @media @tablet-down {
+        margin-right: 0;
+      }
+      @media @phone-down {
+        margin-bottom: 60px;
+      }
+    }
+  }
+  .right-col {
+
+  }
+}

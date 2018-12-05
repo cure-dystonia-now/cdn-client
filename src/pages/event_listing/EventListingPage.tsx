@@ -6,6 +6,9 @@ import { EventListingPageProps } from "../../definitions/props/PageProps";
 import { Link } from "react-router-dom";
 import { DateFormatHelper } from "../../utilities/helpers/DateFormatHelper";
 
+// @ts-ignore
+import eventPanoramaImage from "../../assets/images/event-panorama.jpg";
+
 @inject("pageDependencies")
 @observer
 export class EventListingPage extends React.Component<EventListingPageProps> {
@@ -34,7 +37,7 @@ export class EventListingPage extends React.Component<EventListingPageProps> {
   render() {
     const { page } = this.props.match.params;
     const { eventListingState } = this.props.pageDependencies.stateRegistry;
-    if (eventListingState.loading) return <h1>Loading</h1>;
+    if (eventListingState.loading) return <div/>;
     return (
       <div id="eventListingPage">
         <div className="columns">
@@ -46,6 +49,9 @@ export class EventListingPage extends React.Component<EventListingPageProps> {
             </div>
           </div>
           <div className="column col-7 col-md-12">
+            <div className="image-wrapper">
+              <img className="img-responsive" alt="Event Panorama" src={eventPanoramaImage}/>
+            </div>
             <div className="event-col">
               { eventListingState.events.map(event => this.getEventCard(event)) }
             </div>

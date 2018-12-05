@@ -1,0 +1,54 @@
+#researchPage {
+  margin: 120px 60px 200px;
+  @media @tablet-down {
+    margin: 100px 0;
+  }
+  .accordion {
+    background: #F7F7F7;
+    padding: 30px 40px;
+    margin-bottom: 10px;
+    border-radius: .1rem;
+    box-shadow: 0 .05rem .2rem rgba(48,55,66,.3);
+  }
+  .research-content {
+    &:last-of-type {
+      .description {
+        border-bottom: 0;
+      }
+    }
+    p {
+      font-size: 0.7rem;
+    }
+    h3 {
+      font-size: 0.8rem;
+    }
+    h1 {
+      font-size: 1rem;
+      font-weight: 100;
+      margin-top: 30px;
+    }
+    .description {
+      margin-top: 30px;
+      border-bottom: 1px solid @gray7;
+    }
+  }
+  .research-col {
+    margin-left: 60px;
+    @media @tablet-down {
+      margin-left: 0;
+    }
+  }
+  .info-col {
+    padding: 40px 50px;
+    background: #F7F7F7;
+    border-radius: .1rem;
+    box-shadow: 0 .05rem .2rem rgba(48,55,66,.3);
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 100;
+    }
+    p {
+      font-size: .7rem;
+    }
+  }
+}

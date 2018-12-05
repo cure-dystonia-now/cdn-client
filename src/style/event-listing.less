@@ -18,7 +18,7 @@
       font-size: 0.9em;
     }
   }
-  .event-col {
+  .event-col, .image-wrapper {
     margin-left: 60px;
     @media @tablet-down {
       margin-left: 0;
@@ -37,6 +37,13 @@
       margin: 0;
       font-weight: 100;
       color: @cdn-blue;
+    }
+  }
+  .image-wrapper {
+    margin-bottom: 30px;
+    box-shadow: 0 0.05rem 0.2rem rgba(48, 55, 66, 0.3);
+    img {
+      border-radius: .1rem;
     }
   }
 }
