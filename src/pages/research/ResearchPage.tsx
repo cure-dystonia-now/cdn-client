@@ -59,7 +59,7 @@ export class ResearchPage extends React.Component<PagePropsGeneric> {
     return (
       <div id="researchPage">
         <div className="columns">
-          <div className="column col-3 col-sm-12">
+          <div className="column col-3 col-md-4 col-sm-12">
             <div className="info-col">
               <h1>Research Grants</h1>
               <br/>
@@ -72,7 +72,7 @@ export class ResearchPage extends React.Component<PagePropsGeneric> {
               </p>
             </div>
           </div>
-          <div className="column col-9 col-sm-12">
+          <div className="column col-9 col-md-8 col-sm-12">
             <div className="research-col">
               { this.getEntryAccordions() }
             </div>

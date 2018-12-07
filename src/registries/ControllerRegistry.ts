@@ -8,6 +8,7 @@ import { ResearchController } from "../controllers/ResearchController";
 import { ServiceRegistry } from "./ServiceRegistry";
 import { DashboardController } from "../controllers/DashboardController";
 import { EventListingController } from "../controllers/EventListingController";
+import {LogoutController} from "../controllers/LogoutController";
 
 export class ControllerRegistry {
 
@@ -17,6 +18,7 @@ export class ControllerRegistry {
   public readonly eventController: EventController;
   public readonly loginController: LoginController;
   public readonly researchController: ResearchController;
+  public readonly logoutController: LogoutController;
 
   constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration) {
     this.authenticationController = new AuthenticationController(stateRegistry, serviceRegistry, appConfig);
@@ -24,6 +26,7 @@ export class ControllerRegistry {
     this.eventListingController = new EventListingController(stateRegistry, serviceRegistry, appConfig);
     this.eventController = new EventController(stateRegistry, serviceRegistry, appConfig);
     this.loginController = new LoginController(stateRegistry, serviceRegistry, appConfig);
+    this.logoutController = new LogoutController(stateRegistry, serviceRegistry, appConfig);
     this.researchController = new ResearchController(stateRegistry, serviceRegistry, appConfig);
   }
 

@@ -31,8 +31,6 @@ export class AuthenticationService extends BaseService {
     const config = { withCredentials: true };
 
     const response = await axios.post(this.getBackendUrl() + "/authentication/login", payload, config);
-    this.saveLocalAuthAdmin(response.data.admin!);
-
     return response.data;
   }
 

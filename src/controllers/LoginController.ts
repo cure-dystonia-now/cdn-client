@@ -15,7 +15,10 @@ export class LoginController extends BaseController {
         loginState.updateError(response.error || "error");
         return;
       }
-      authenticationService.saveLocalAuthAdmin(response.admin!);
+      if (response.admin) {
+        authenticationService.saveLocalAuthAdmin(response.admin);
+        window.location.href = "/dashboard";
+      }
     }
     catch (error) {
       loginState.updateError("error");

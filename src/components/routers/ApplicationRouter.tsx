@@ -11,6 +11,7 @@ import { EventPage } from "../../pages/event/EventPage";
 import { ResearchPage } from "../../pages/research/ResearchPage";
 import { DashboardPage } from "../../pages/dashboard/DashboardPage";
 import { EventListingPage } from "../../pages/event_listing/EventListingPage";
+import {LogoutPage} from "../../pages/logout/LogoutPage";
 
 export class ApplicationRouter extends React.Component<StatefulComponent> {
 
@@ -26,6 +27,7 @@ export class ApplicationRouter extends React.Component<StatefulComponent> {
         <Route path="/event/:id" component={EventPage}/>
         <Route path="/events/:page?" component={EventListingPage}/>
         <Route path="/login" component={LoginPage}/>
+        <Route path="/logout" component={LogoutPage}/>
       </div>
     )
   }
