@@ -27,7 +27,12 @@ type EventListingProps = {
   page?: number
 }
 
+type TicketAnalyticProps = {
+  page?: number
+}
+
 export type EventPageProps = PageProps<EventProps>;
 export type DashboardSubViewProps = PageProps<DashboardSubProps>;
 export type ContentEditorSubViewProps = PageProps<EditorSubProps>;
 export type EventListingPageProps = PageProps<EventListingProps>;
+export type TicketAnalyticSubViewProps = PageProps<TicketAnalyticProps>;
