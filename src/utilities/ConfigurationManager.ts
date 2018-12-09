@@ -7,6 +7,7 @@ export class ConfigurationManager {
     const environment = process.env.NODE_ENV;
     switch (environment) {
       case "development":
+      case "production":
         return DevelopmentConfiguration;
       default:
         throw Error("Could not find a configuration for the specified environment");
