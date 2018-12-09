@@ -26,5 +26,13 @@ export class PurchaseService extends ControllerService {
     if (!response.success) throw Error(response.error || "Could not purchase tickets to event");
   }
 
+  public async getEventTicketSalesBulk(start: number, count: number, eventId?: number): Promise<any> {
+    const url = `${this.getBackendUrl()}/purchases/get-bulk/events`;
+    const payload = { start, count, event_id: eventId };
+    const response = await this.get(url, { params: payload, withCredentials: true });
+    if (!response.success) throw Error(response.error || "Could not retrieve event ticket sales");
+    return response;
+  }
+
 
 }

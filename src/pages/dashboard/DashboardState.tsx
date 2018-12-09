@@ -4,6 +4,8 @@ import { Event } from "../../definitions/types/Event";
 import { EventEditorState } from "./substates/EventEditorState";
 import { Research } from "../../definitions/types/Research";
 import { ResearchEditorState } from "./substates/ResearchEditorState";
+import { DonorPayment } from "../../definitions/types/DonorPayment";
+import { Donor } from "../../definitions/types/Donor";
 
 export class DashboardState {
 
@@ -22,12 +24,20 @@ export class DashboardState {
   @observable
   public researchEditorState: ResearchEditorState;
 
+  @observable
+  public eventTicketSales: Array<DonorPayment>;
+
+  @observable
+  public eventTicketDonors: Array<Donor>;
+
   constructor() {
     this.eventsStartId = 0;
     this.events = [];
     this.eventEditorState = new EventEditorState();
     this.research = [];
     this.researchEditorState = new ResearchEditorState();
+    this.eventTicketSales = [];
+    this.eventTicketDonors = [];
   }
 
   @bind
@@ -43,6 +53,7 @@ export class DashboardState {
   }
 
   @bind
+  @action
   public updateResearch(researchEntries: Array<Research>): void {
     this.research = researchEntries;
   }
@@ -51,6 +62,18 @@ export class DashboardState {
   @action
   public resetResearchEditorState(id?: number): void {
     this.researchEditorState = new ResearchEditorState(id);
+  }
+
+  @bind
+  @action
+  public updateEventTicketSales(ticketSales: Array<DonorPayment>): void {
+    this.eventTicketSales = ticketSales;
+  }
+
+  @bind
+  @action
+  public updateTicketDonors(ticketDonors: Array<Donor>): void {
+    this.eventTicketDonors = ticketDonors;
   }
 
 }

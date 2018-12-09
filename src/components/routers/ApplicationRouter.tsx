@@ -19,7 +19,7 @@ export class ApplicationRouter extends React.Component<StatefulComponent> {
     const { authenticationState } = this.props.pageDependencies.stateRegistry;
     const isAuthenticated = authenticationState.isAuthenticated();
     return (
-      <div style={{maxWidth: 2048}}>
+      <div>
         <Route exact path="/" component={HomePage}/>
         <Route path="/research" component={ResearchPage}/>
         <Route path="/about" component={AboutPage}/>
