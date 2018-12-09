@@ -1,5 +1,5 @@
 import React from "react";
-import { TicketAnalyticSubViewProps } from "../../../definitions/props/PageProps";
+import { DonationAnalyticsSubViewProps } from "../../../definitions/props/PageProps";
 import { inject, observer } from "mobx-react";
 import { DonorPayment } from "../../../definitions/types/DonorPayment";
 import { Link } from "react-router-dom";
@@ -8,35 +8,30 @@ import moment from "moment";
 
 @inject("pageDependencies")
 @observer
-export class TicketAnalyticsSubView extends React.Component<TicketAnalyticSubViewProps> {
+export class DonationAnalyticsSubView extends React.Component<DonationAnalyticsSubViewProps> {
 
   async componentDidMount() {
-    const { controllerRegistry, stateRegistry } = this.props.pageDependencies;
-    const { ticketAnalyticsController } = controllerRegistry.dashboardController;
-    await ticketAnalyticsController.fetchTicketSalesBulk(this.getPageNumber(), stateRegistry.dashboardState.filteredEventId);
-    await ticketAnalyticsController.fetchEventNames();
+    const { controllerRegistry } = this.props.pageDependencies;
+    const { donationAnalyticsController } = controllerRegistry.dashboardController;
+    await donationAnalyticsController.fetchDonationsBulk(this.getPageNumber());
   }
 
   private getTableRow(payment: DonorPayment) {
     const { controllerRegistry } = this.props.pageDependencies;
-    const { ticketAnalyticsController } = controllerRegistry.dashboardController;
+    const { donationAnalyticsController } = controllerRegistry.dashboardController;
 
-    const donor = ticketAnalyticsController.getDonorFromTicketSales(payment.donor_id);
-    if (!donor) return undefined;
+    const donor = donationAnalyticsController.getDonorFromDonations(payment.donor_id);
+    if (!donor) return <tr/>;
 
     return (
       <tr key={payment.id}>
         <td>{payment.id}</td>
-        <td>
-          <Link to={`/dashboard/edit-event/${payment.event_id}`}>{payment.event_id}</Link>
-        </td>
         <td>
           <Link to={`/dashboard/donor/${donor.id!}`}>
             {donor.first_name} {donor.last_name}
           </Link>
         </td>
         <td>${Number(payment.amount).toFixed(2)}</td>
-        <td>{payment.ticket_quantity}</td>
         <td>{moment.parseZone(payment.created_at).format("MMM DD YYYY")}</td>
       </tr>
     )
@@ -54,35 +49,20 @@ export class TicketAnalyticsSubView extends React.Component<TicketAnalyticSubVie
 
   private async handlePageChange(newPageNumber: number) {
     const { controllerRegistry } = this.props.pageDependencies;
-    const { ticketAnalyticsController } = controllerRegistry.dashboardController;
-    window.location.href = `/dashboard/ticket-analytics/${newPageNumber}`;
-    await ticketAnalyticsController.fetchTicketSalesBulk(newPageNumber);
+    const { donationAnalyticsController } = controllerRegistry.dashboardController;
+    window.location.href = `/dashboard/donation-analytics/${newPageNumber}`;
+    await donationAnalyticsController.fetchDonationsBulk(newPageNumber);
   }
 
   private getTableRows() {
     const { stateRegistry } = this.props.pageDependencies;
     const { dashboardState } = stateRegistry;
-    return dashboardState.eventTicketSales.map(donorPayment => this.getTableRow(donorPayment));
+    return dashboardState.donations.map(donorPayment => this.getTableRow(donorPayment));
   }
 
   private getPageNumber(): number {
     const page = this.props.match.params.page;
     return page ? Number(page) : 1;
-  }
-
-  private getSelectOptions() {
-    const { stateRegistry } = this.props.pageDependencies;
-    const { dashboardState } = stateRegistry;
-    return dashboardState.eventNames.map(eventName => <option key={eventName.id} value={eventName.id}>{eventName.name}</option>);
-  }
-
-  @bind
-  private async onFilterChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const { controllerRegistry, stateRegistry } = this.props.pageDependencies;
-    const { ticketAnalyticsController } = controllerRegistry.dashboardController;
-    const eventId = event.target.value == "0" ? undefined : event.target.value;
-    stateRegistry.dashboardState.updateFilteredEvent(eventId);
-    await ticketAnalyticsController.fetchTicketSalesBulk(this.getPageNumber(), eventId);
   }
 
   render(): React.ReactNode {
@@ -92,29 +72,14 @@ export class TicketAnalyticsSubView extends React.Component<TicketAnalyticSubVie
     const pageNumber = this.getPageNumber();
     return (
       <div>
-        <div className="columns">
-          <div className="column col-8 col-md-12">
-            <h1 style={{borderBottom: 0, marginBottom: 0}}>Event Ticket Sales</h1>
-          </div>
-          <div className="column col-4 col-md-12">
-            <div className="form-group">
-              <select onChange={this.onFilterChange} value={dashboardState.filteredEventId} className="form-select">
-                <option value={0}>Filter by Event</option>
-                {this.getSelectOptions()}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div id="ticketAnalyticsSubView">
+        <h1 style={{borderBottom: 0, marginBottom: 0}}>Donations</h1>
+        <div id="donationAnalyticsSubView">
           <table className="table">
             <thead>
             <tr>
               <th>Donation #</th>
-              <th>Event #</th>
               <th>Donor</th>
               <th>Amount Spent</th>
-              <th>Tickets</th>
               <th>Date Purchased</th>
             </tr>
             </thead>

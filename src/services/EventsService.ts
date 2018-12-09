@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { ControllerService } from "./generic/ControllerService";
 import { Event } from "../definitions/types/Event";
+import { NameIdentifierPair } from "../definitions/types/NameIdentifierPair";
 
 export class EventsService extends ControllerService {
 
@@ -32,6 +33,13 @@ export class EventsService extends ControllerService {
     const result = await this.post(url, event, { withCredentials: true });
     if (!result.success) throw Error(result.error || "Could not create event");
     return result.id;
+  }
+
+  public async fetchEventNames(): Promise<Array<NameIdentifierPair>> {
+    const url = `${this.getBackendUrl()}/events/get-all/names`;
+    const response = await axios.get(url);
+    if (!response.data.success) throw Error(response.data.error || "Could not fetch events");
+    return response.data.events;
   }
 
 }

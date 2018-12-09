@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router";
 import { ResearchManagementSubView } from "./subviews/ResearchManagementSubView";
 import { ResearchEditorSubView } from "./subviews/ResearchEditorSubView";
 import { TicketAnalyticsSubView } from "./subviews/TicketAnalyticsSubView";
+import { DonationAnalyticsSubView } from "./subviews/DonationAnalyticsSubView";
 
 @inject("pageDependencies")
 @observer
@@ -20,6 +21,7 @@ export class DashboardSubView extends React.Component<DashboardSubViewProps> {
         <Route path="/dashboard/edit-event/:id?" component={EventEditorSubView}/>
         <Route path="/dashboard/edit-research/:id?" component={ResearchEditorSubView}/>
         <Route path="/dashboard/ticket-analytics/:page?" component={TicketAnalyticsSubView}/>
+        <Route path="/dashboard/donation-analytics/:page?" component={DonationAnalyticsSubView}/>
         <Route render={() => <h1>Not Found</h1>}/>
       </Switch>
     )

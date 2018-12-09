@@ -6,12 +6,12 @@ const TICKETS_PER_PAGE = 25;
 
 export class TicketAnalyticsController extends BaseController {
 
-  public async fetchTicketSalesBulk(pageNumber: number) {
+  public async fetchTicketSalesBulk(pageNumber: number, eventId?: string) {
     const { purchaseService } = this.serviceRegistry;
     const { dashboardState } = this.stateRegistry;
     try {
-      const start = TICKETS_PER_PAGE * (pageNumber - 1);
-      const result = await purchaseService.getEventTicketSalesBulk(start, TICKETS_PER_PAGE);
+      const start = TICKETS_PER_PAGE * pageNumber;
+      const result = await purchaseService.getEventTicketSalesBulk(start, TICKETS_PER_PAGE, eventId ? Number(eventId) : undefined);
       dashboardState.updateEventTicketSales(result.ticket_sales);
       dashboardState.updateTicketDonors(result.donors);
     }
@@ -20,6 +20,19 @@ export class TicketAnalyticsController extends BaseController {
     }
   }
 
+  public async fetchEventNames(): Promise<void> {
+    const { eventsService } = this.serviceRegistry;
+    const { dashboardState } = this.stateRegistry;
+    try {
+      const eventNames = await eventsService.fetchEventNames();
+      dashboardState.updateEventNames(eventNames);
+    }
+    catch (e) {
+      /* TODO: Show error toast */
+    }
+  }
+
+  /* TODO Move to state */
   public getDonorFromTicketSales(donorId: number): Donor | null {
     const { dashboardState } = this.stateRegistry;
 

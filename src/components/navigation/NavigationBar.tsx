@@ -31,6 +31,7 @@ export class NavigationBar extends React.Component<StatefulComponent> {
           <Link to="/about" className="btn btn-link">About</Link>
           <Link to="/research" className="btn btn-link">Research</Link>
           <Link to="/events" className="btn btn-link">Events</Link>
+          <Link to="/donate" className="btn btn-link">Donate</Link>
         </section>
         {authenticationState.isAuthenticated() &&
           <section className="navbar-section">

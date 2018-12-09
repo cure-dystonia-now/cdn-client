@@ -6,10 +6,12 @@ import { EventState } from "../pages/event/EventState";
 import { DashboardState } from "../pages/dashboard/DashboardState";
 import { EventListingState } from "../pages/event_listing/EventListingState";
 import { ResearchState } from "../pages/research/ResearchState";
+import { DonateState } from "../pages/donate/DonateState";
 
 export class StateRegistry {
 
   public readonly authenticationState: AuthenticationState;
+  public readonly donateState: DonateState;
   public readonly dashboardState: DashboardState;
   public readonly eventListingState: EventListingState;
   public readonly eventState: EventState;
@@ -21,6 +23,7 @@ export class StateRegistry {
   constructor() {
     this.authenticationState = new AuthenticationState();
     this.dashboardState = new DashboardState();
+    this.donateState = new DonateState();
     this.eventListingState = new EventListingState();
     this.eventState = new EventState();
     this.homeState = new HomeState();

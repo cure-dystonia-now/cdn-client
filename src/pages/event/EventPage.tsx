@@ -1,8 +1,6 @@
 import React from "react";
 import bind from "bind-decorator";
 import { inject, observer } from "mobx-react";
-import { Elements } from "react-stripe-elements";
-
 import { EventPageProps } from "../../definitions/props/PageProps";
 import { EventPaymentModal } from "../../components/modals/EventPaymentModal";
 
@@ -58,9 +56,7 @@ export class EventPage extends React.Component<EventPageProps> {
             </div>
           </div>
         </div>
-        <Elements>
-          <EventPaymentModal pageDependencies={this.props.pageDependencies}/>
-        </Elements>
+        <EventPaymentModal pageDependencies={this.props.pageDependencies}/>
       </div>
     )
   }

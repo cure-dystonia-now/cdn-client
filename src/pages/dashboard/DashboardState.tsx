@@ -6,6 +6,7 @@ import { Research } from "../../definitions/types/Research";
 import { ResearchEditorState } from "./substates/ResearchEditorState";
 import { DonorPayment } from "../../definitions/types/DonorPayment";
 import { Donor } from "../../definitions/types/Donor";
+import { NameIdentifierPair } from "../../definitions/types/NameIdentifierPair";
 
 export class DashboardState {
 
@@ -24,11 +25,31 @@ export class DashboardState {
   @observable
   public researchEditorState: ResearchEditorState;
 
+  /***************************************************/
+  /* TICKET ANALYTIC SUBVIEW                       */
+  /***************************************************/
+
   @observable
   public eventTicketSales: Array<DonorPayment>;
 
   @observable
   public eventTicketDonors: Array<Donor>;
+
+  @observable
+  public eventNames: Array<NameIdentifierPair>;
+
+  @observable
+  public filteredEventId?: string;
+
+  /***************************************************/
+  /* DONATION ANALYTIC SUBVIEW                       */
+  /***************************************************/
+
+  @observable
+  public donations: Array<DonorPayment>;
+
+  @observable
+  public donationDonors: Array<Donor>;
 
   constructor() {
     this.eventsStartId = 0;
@@ -38,6 +59,9 @@ export class DashboardState {
     this.researchEditorState = new ResearchEditorState();
     this.eventTicketSales = [];
     this.eventTicketDonors = [];
+    this.eventNames = [];
+    this.donations = [];
+    this.donationDonors = [];
   }
 
   @bind
@@ -74,6 +98,30 @@ export class DashboardState {
   @action
   public updateTicketDonors(ticketDonors: Array<Donor>): void {
     this.eventTicketDonors = ticketDonors;
+  }
+
+  @bind
+  @action
+  public updateEventNames(eventNames: Array<NameIdentifierPair>): void {
+    this.eventNames = eventNames;
+  }
+
+  @bind
+  @action
+  public updateFilteredEvent(eventId?: string) {
+    this.filteredEventId = eventId;
+  }
+
+  @bind
+  @action
+  public updateDonations(donations: Array<DonorPayment>): void {
+    this.donations = donations;
+  }
+
+  @bind
+  @action
+  public updateDonationDonors(donors: Array<Donor>): void {
+    this.donationDonors = donors;
   }
 
 }
