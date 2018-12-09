@@ -44,7 +44,7 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin(),
     new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': "production"
+      'process.env.NODE_ENV': "'production'"
     }),
     new BrotliPlugin({
       asset: '[path].br[query]',
