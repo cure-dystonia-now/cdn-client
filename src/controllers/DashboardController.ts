@@ -6,20 +6,23 @@ import { EventEditorController } from "./subcontrollers/dashboard/EventEditorCon
 import { ResearchEditorController } from "./subcontrollers/dashboard/ResearchEditorController";
 import { TicketAnalyticsController } from "./subcontrollers/dashboard/TicketAnalyticsController";
 import { DonationAnalyticsController } from "./subcontrollers/dashboard/DonationAnalyticsController";
+import { DonorRegistryController } from "./subcontrollers/dashboard/DonorRegistryController";
 
 export class DashboardController extends BaseController {
 
+  public readonly donationAnalyticsController: DonationAnalyticsController;
+  public readonly donorRegistryController: DonorRegistryController;
   public readonly eventEditorController: EventEditorController;
   public readonly researchEditorController: ResearchEditorController;
   public readonly ticketAnalyticsController: TicketAnalyticsController;
-  public readonly donationAnalyticsController: DonationAnalyticsController;
 
   constructor(stateRegistry: StateRegistry, serviceRegistry: ServiceRegistry, appConfig: ApplicationConfiguration) {
     super(stateRegistry, serviceRegistry, appConfig);
+    this.donationAnalyticsController = new DonationAnalyticsController(stateRegistry, serviceRegistry, appConfig);
+    this.donorRegistryController = new DonorRegistryController(stateRegistry, serviceRegistry, appConfig);
     this.eventEditorController = new EventEditorController(stateRegistry, serviceRegistry, appConfig);
     this.researchEditorController = new ResearchEditorController(stateRegistry, serviceRegistry, appConfig);
     this.ticketAnalyticsController = new TicketAnalyticsController(stateRegistry, serviceRegistry, appConfig);
-    this.donationAnalyticsController = new DonationAnalyticsController(stateRegistry, serviceRegistry, appConfig);
   }
 
   public async fetchEvents(): Promise<void> {

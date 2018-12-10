@@ -20,4 +20,12 @@ export class DonorService extends ControllerService {
     return response.donor_payments;
   }
 
+  public async fetchBulk(start: number, count: number): Promise<Array<Donor>> {
+    const url = `${this.getBackendUrl()}/donors/bulk/get`;
+    const params = { start, count };
+    const response = await this.get(url, { params, withCredentials: true });
+    if (!response.success) throw (response.error || "Could not fetch Donors");
+    return response.donors;
+  }
+
 }

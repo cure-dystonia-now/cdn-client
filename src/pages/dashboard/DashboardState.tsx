@@ -61,6 +61,12 @@ export class DashboardState {
   @observable
   public donorPaymentHistory: Array<DonorPayment>;
 
+  /***************************************************/
+  /* DONOR-REGISTRY SUBVIEW                          */
+  /***************************************************/
+  @observable
+  public donorRegistryDonors: Array<Donor>;
+
   constructor() {
     this.eventsStartId = 0;
     this.events = [];
@@ -73,6 +79,7 @@ export class DashboardState {
     this.donations = [];
     this.donationDonors = [];
     this.donorPaymentHistory = [];
+    this.donorRegistryDonors = [];
   }
 
   @bind
@@ -145,6 +152,12 @@ export class DashboardState {
   @action
   public updateDonorPaymentHistory(donorPayments: Array<DonorPayment>) {
     this.donorPaymentHistory = donorPayments;
+  }
+
+  @bind
+  @action
+  public updateDonorRegistry(donors: Array<Donor>): void {
+    this.donorRegistryDonors = donors;
   }
 
 }
