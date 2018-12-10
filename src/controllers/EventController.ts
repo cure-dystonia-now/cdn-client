@@ -60,6 +60,8 @@ export class EventController extends BaseController {
         return;
       }
       await purchaseService.purchaseEventTicket(stripeResponse.token.id, eventState.purchaseFields, eventState.event!.id, eventState.ticketQuantity);
+      eventState.updatePurchaseSuccessful(true);
+      eventState.updatePaymentModalOpen(false);
     }
     catch (error) {
       eventState.updatePurchaseError(error.message || "Payment Gateway Error");

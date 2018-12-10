@@ -30,6 +30,9 @@ export class EventState {
   @observable
   public purchaseError?: string;
 
+  @observable
+  public purchaseSuccessful: boolean;
+
   constructor() {
     this.loading = false;
     this.paymentModalOpen = false;
@@ -37,6 +40,7 @@ export class EventState {
     this.purchaseFields = {};
     this.purchaseInvalidFields = [];
     this.purchaseLoading = false;
+    this.purchaseSuccessful = false;
   }
 
   @bind
@@ -58,6 +62,12 @@ export class EventState {
   @action
   public updateLoading(loading: boolean) {
     this.loading = loading;
+  }
+
+  @bind
+  @action
+  public updatePurchaseSuccessful(successful: boolean) {
+    this.purchaseSuccessful = successful;
   }
 
   @bind

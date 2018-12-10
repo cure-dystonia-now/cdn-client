@@ -35,9 +35,14 @@ type DonationAnalyticProps = {
   page?: number
 }
 
+type DonorProps = {
+  donorId: number
+}
+
 export type EventPageProps = PageProps<EventProps>;
 export type DashboardSubViewProps = PageProps<DashboardSubProps>;
 export type ContentEditorSubViewProps = PageProps<EditorSubProps>;
 export type EventListingPageProps = PageProps<EventListingProps>;
 export type TicketAnalyticSubViewProps = PageProps<TicketAnalyticProps>;
 export type DonationAnalyticsSubViewProps = PageProps<DonationAnalyticProps>;
+export type DonorSubViewProps = PageProps<DonorProps>;

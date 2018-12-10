@@ -28,12 +28,12 @@ export class DashboardPage extends React.Component<PagePropsGeneric> {
                   &nbsp; Research
                 </Link>
               </li>
-              <li className="menu-item">
-                <Link to={`${this.props.match.url}/email`}>
-                  <i className="icon icon-mail"/>
-                  &nbsp; Email Blast
-                </Link>
-              </li>
+              {/*<li className="menu-item">*/}
+                {/*<Link to={`${this.props.match.url}/email`}>*/}
+                  {/*<i className="icon icon-mail"/>*/}
+                  {/*&nbsp; Email Blast*/}
+                {/*</Link>*/}
+              {/*</li>*/}
               <li className="divider" data-content="ANALYTICS"/>
               <li className="menu-item">
                 <Link to={`${this.props.match.url}/ticket-analytics`}>

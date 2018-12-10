@@ -22,10 +22,15 @@ export class EventPage extends React.Component<EventPageProps> {
     eventState.updatePaymentModalOpen(true);
   }
 
+  @bind
+  private closeSuccessToast() {
+    const { eventState } = this.props.pageDependencies.stateRegistry;
+    eventState.updatePurchaseSuccessful(false);
+  }
 
   render(): React.ReactNode {
     const { eventState } = this.props.pageDependencies.stateRegistry;
-    const { event, loading } = eventState;
+    const { event, loading, purchaseSuccessful } = eventState;
     if (loading) return <div className="loading loading-lg"/>;
     if (!event) {
       return (
@@ -36,6 +41,12 @@ export class EventPage extends React.Component<EventPageProps> {
       <div id="eventPage">
         <div className="columns">
           <div className="column col-md-12 col-8">
+            <div hidden={!purchaseSuccessful} className="pay-toast">
+              <div className="toast toast-success">
+                <button onClick={this.closeSuccessToast} className="btn btn-clear float-right"/>
+                Your payment was successful, thank you! Check your email for a receipt.
+              </div>
+            </div>
             <div className="description-wrapper">
               <h1>{event.name}</h1>
               <hr/>

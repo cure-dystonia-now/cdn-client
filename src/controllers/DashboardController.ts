@@ -51,4 +51,24 @@ export class DashboardController extends BaseController {
     }
   }
 
+  public async fetchDonorInfo(donorId: number): Promise<void> {
+    const { dashboardState } = this.stateRegistry;
+    const { donorService } = this.serviceRegistry;
+
+    dashboardState.updateDonor(undefined);
+    dashboardState.updateDonorPaymentHistory([]);
+
+    try {
+      const donor = await donorService.fetchDonor(donorId);
+      dashboardState.updateDonor(donor);
+
+      const donorPayments = await donorService.fetchPaymentHistory(donorId);
+      dashboardState.updateDonorPaymentHistory(donorPayments);
+    }
+    catch (error) {
+      console.error(error);
+    }
+
+  }
+
 }
